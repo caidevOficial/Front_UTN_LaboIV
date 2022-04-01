@@ -1,0 +1,42 @@
+<app-header-body></app-header-body>
+<div class="black">
+    <table class="black" align="center" border="5px">
+        <thead>
+          <tr>
+            <td colspan="2">
+              <div class="title">User Ages</div>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="values">First value: </div><input class="values" align='right' type="text" [(ngModel)]="user.age_1">
+            </td>
+            <td>
+              <div class="values">Second value: </div><input class="values" align='right' type="text" [(ngModel)]="user.age_2">
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+              <input class="values" value='Sum' type="button" (click)="user.sum_user_ages()">
+            </td>
+            <td align="center">
+              <div class="values">Result: </div><div class="values">{{user.sum_ages}}</div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+              <input class="values" value='Average' type="button" (click)="user.mean_user_ages()">
+            </td>
+            <td align="center">
+              <div class="values">Average: </div><div class="values">{{user.mean_ages}}</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="black" align="center">
+        <input class="title" type="button" value="Back" routerLink="">
+      </div>
+</div>

@@ -1,0 +1,39 @@
+<app-header-body></app-header-body>
+<div class="black">
+  <table class="black" align="center" border="5px">
+    <thead>
+      <tr>
+        <td colspan="2">
+          <div class="title">Login</div>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="values">
+          Username :
+        </td>
+        <td class="values">
+          <input class="values" type="text" [(ngModel)]="user.username">
+        </td>
+      </tr>
+      <tr>
+        <td class="values">
+          Password :
+        </td>
+        <td class="values">
+          <input class="values" type="password" [(ngModel)]="user.password">
+        </td>
+      </tr>
+      <tr>
+        <td align='center' colspan="2">
+          <input class="values" type="button" value="Login" (click)="user.login()">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="black" align="center">
+    <input class="title" type="button" value="Back" routerLink="">
+  </div>
+</div>
