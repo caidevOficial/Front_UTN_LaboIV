@@ -4,10 +4,10 @@ export class User {
     username: string | undefined;
     password: string | undefined;
     status: boolean | undefined;
-    age_1: Number;
-    age_2: Number;
-    sum_ages: Number;
-    mean_ages: Number;
+    age_1: number;
+    age_2: number;
+    sum_ages: number;
+    mean_ages: number;
 
     /**
      * Builder of the class.
@@ -37,17 +37,31 @@ export class User {
     }
 
     /**
+     * Validates if the ages are numbers.
+     * @returns true if the ages are valid, false otherwise.
+     */
+    private validate_ages(){
+        if(isNaN(this.age_1) || isNaN(this.age_2)){
+            alert('At least one field is not a number');
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Sums the ages of the user.
      */
     private sum_user_ages(){
-        this.sum_ages = +this.age_1 + +this.age_2;
+        if(typeof(this.age_1) === 'number' && typeof(this.age_2) === 'number'){
+            this.sum_ages = +this.age_1 + +this.age_2;
+        }
     }
 
     /**
      * Obtains the average of the ages of the user.
      */
     private mean_user_ages(){
-        this.mean_ages = +this.sum_ages / 2;
+        this.validate_ages()?this.mean_ages = this.sum_ages / 2: this.mean_ages = 0;
     }
 
     /**
