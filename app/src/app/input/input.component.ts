@@ -16,4 +16,14 @@ export class InputComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Sets the fields in 0
+   */
+  clear(){
+    this.user.age_1 = 0;
+    this.user.age_2 = 0;
+    this.user.mean_ages = 0;
+    this.user.sum_ages = 0;
+  }
+
 }

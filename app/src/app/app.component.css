@@ -21,3 +21,23 @@ input {
   text-align: center;
   color: antiquewhite;
 }
+
+/* Mobile */
+@media screen and (max-width: 500px) {
+
+  .tHeader {
+    display: block;
+    cursor: pointer;
+    width: auto;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+
+  /* For desktop: */
+  .tHeader {
+    display: block;
+    cursor: pointer;
+    width: auto;
+  }
+}

@@ -9,6 +9,7 @@ import { InputComponent } from './input/input.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { HeaderBodyComponent } from './header-body/header-body.component';
+import { FooterComponent } from './footer/footer.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
     LoginComponent,
     InputComponent,
     HomeComponent,
-    HeaderBodyComponent
+    HeaderBodyComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
