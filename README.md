@@ -1,12 +1,12 @@
 <table align='center'>
+  <tr>
+    <td>
+        <img alt="Universidad Tecnológica Nacional" src="https://github.com/caidevOficial/Logos/raw/master/Personales/Personal_Logo_Gif.gif?raw=true" height="150px" width="500px"/>
+    </td>
+  </tr>
     <tr>
         <td>
-            <img alt="Universidad Tecnológica Nacional" src="https://github.com/caidevOficial/Logos/raw/master/Personales/Personal_Logo_Gif.gif?raw=true" height="150px" width="500px"/>
-        </td>
-    </tr>
-    <tr>
-        <td>
-        <a href="https://github.com/caidevOficial/Php_UTN_PrograIII/" target="_blank">
+          <a href="https://github.com/caidevOficial/Php_UTN_PrograIII/" target="_blank">
             <img alt="Universidad Tecnológica Nacional" src="https://github.com/caidevOficial/Logos/raw/master/Instituciones/logo-utn_black_white.png?raw=true" height="150px" width="500px"/>
         </a>  
         </td>
@@ -49,95 +49,95 @@
 <table align="center">
  <th colspan="2"><h2>Technologies used. 📌</h2></th>
  <tr>
-        <td>
-        <a href="https://angular.io/">
-            <img align="center" alt="js" src="https://github.com/devicons/devicon/blob/master/icons/angularjs/angularjs-original.svg?raw=true" width="50px" height="50px" />
-        </a>
-        </td>
-        <td>
-        <center><h3>Angular</h3></center>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="https://nodejs.org/es/">
-                <img align="center" alt="js" src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-original-wordmark.svg?raw=true" width="50px" height="50px" />
-            </a>
-        </td>
-        <td>
-            <center><h3>NodeJs</h3></center>
-        </td>
-    </tr>
-    <tr>
-        <td>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
-            <img align="center" alt="js" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg?raw=true" width="50px" height="50px" />
-        </a>
-        </td>
-        <td>
-        <center><h3>Js</h3></center>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="https://firebase.google.com/docs?gclsrc=ds&gclsrc=ds">
-                <img align="center" alt="Firebase" src="https://github.com/devicons/devicon/blob/master/icons/firebase/firebase-plain.svg?raw=true" width="50px" height="50px" />
-            </a>
-        </td>
-        <td>
-            <center><h3>Firebase</h3></center>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="https://www.w3.org/html/">
+    <td>
+      <a href="https://angular.io/">
+          <img align="center" alt="js" src="https://github.com/devicons/devicon/blob/master/icons/angularjs/angularjs-original.svg?raw=true" width="50px" height="50px" />
+      </a>
+    </td>
+    <td>
+      <center><h3>Angular</h3></center>
+    </td>
+  </tr>
+  <tr>
+      <td>
+          <a href="https://nodejs.org/es/">
+              <img align="center" alt="js" src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-original.svg?raw=true" width="50px" height="50px" />
+          </a>
+      </td>
+      <td>
+          <center><h3>NodeJs</h3></center>
+      </td>
+  </tr>
+  <tr>
+      <td>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
+          <img align="center" alt="js" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg?raw=true" width="50px" height="50px" />
+      </a>
+      </td>
+      <td>
+      <center><h3>Js</h3></center>
+      </td>
+  </tr>
+  <tr>
+      <td>
+          <a href="https://firebase.google.com/docs?gclsrc=ds&gclsrc=ds">
+              <img align="center" alt="Firebase" src="https://github.com/devicons/devicon/blob/master/icons/firebase/firebase-plain.svg?raw=true" width="50px" height="50px" />
+          </a>
+      </td>
+      <td>
+          <center><h3>Firebase</h3></center>
+      </td>
+  </tr>
+  <tr>
+      <td>
+          <a href="https://www.w3.org/html/">
             <img align="center" alt="html" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg?raw=true" width="50px" height="50px" />
-            </a>
-        </td>
-        <td>
-            <center><h3>Html</h3></center>
-        </td>
-    </tr>
-    <tr>
-        <td>
-        <a href="https://www.w3schools.com/css/">
-            <img align="center" alt="css" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg?raw=true" width="50px" height="50px" />
-        </a>
-        </td>
-        <td>
-        <center><h3>Css</h3></center>
-        </td>
-    </tr>
-    <tr>
-        <td>
-        <a href="https://getbootstrap.com" target="_blank">
-            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/>
-        </a> 
-        </td>
-        <td>
-        <center><h3>Bootstrap</h3></center>
-        </td>
-    </tr>
-    <tr>
-        <td>
-        <a href="https://git-scm.com/">
-            <img align="center" alt="git" src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg?raw=true" width="50px" height="50px" />
-        </a>
-        </td>
-        <td>
-        <center><h3>Git</h3></center>
-        </td>
-    </tr>
-    <tr>
-        <td>
-        <a href="https://code.visualstudio.com/" target="_blank">
-            <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png?raw=true" alt="visualStudio" width="40" height="40"/>
-        </a>
-        </td>
-        <td>
-        <center><h3>Visual Studio Code</h3></center>
-        </td>
-    </tr>
+          </a>
+      </td>
+      <td>
+          <center><h3>Html</h3></center>
+      </td>
+  </tr>
+  <tr>
+      <td>
+      <a href="https://www.w3schools.com/css/">
+          <img align="center" alt="css" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg?raw=true" width="50px" height="50px" />
+      </a>
+      </td>
+      <td>
+      <center><h3>Css</h3></center>
+      </td>
+  </tr>
+  <tr>
+      <td>
+      <a href="https://getbootstrap.com" target="_blank">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/>
+      </a> 
+      </td>
+      <td>
+      <center><h3>Bootstrap</h3></center>
+      </td>
+  </tr>
+  <tr>
+      <td>
+      <a href="https://git-scm.com/">
+          <img align="center" alt="git" src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg?raw=true" width="50px" height="50px" />
+      </a>
+      </td>
+      <td>
+      <center><h3>Git</h3></center>
+      </td>
+  </tr>
+  <tr>
+      <td>
+      <a href="https://code.visualstudio.com/" target="_blank">
+          <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png?raw=true" alt="visualStudio" width="40" height="40"/>
+      </a>
+      </td>
+      <td>
+      <center><h3>Visual Studio Code</h3></center>
+      </td>
+  </tr>
 </table>
 
 ---
