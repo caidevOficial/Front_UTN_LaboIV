@@ -1,7 +1,1 @@
-body {
-    background-color: black;
-}
-
-.black {
-    background-color: black;
-}
+@import "../app.component.css";
