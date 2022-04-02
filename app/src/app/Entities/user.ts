@@ -1,7 +1,7 @@
 import { isNull } from "@angular/compiler/src/output/output_ast";
 
 export class User {
-    username: string | undefined;
+    username: string;
     password: string | undefined;
     status: boolean | undefined;
     age_1: number;
@@ -29,7 +29,7 @@ export class User {
         let the_user = 'nobody'
         if(this.username !== '' && this.password !== ''){
             this.status = true;
-            sessionStorage.setItem(this.login.toString(), JSON.stringify(this));
+            sessionStorage.setItem(this.username, JSON.stringify(this));
             the_user = this.username + ' ' + this.password;
         }
         
