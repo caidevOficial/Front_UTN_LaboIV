@@ -30,10 +30,10 @@ export class User {
         if(this.username !== '' && this.password !== ''){
             this.status = true;
             sessionStorage.setItem(this.username, JSON.stringify(this));
-            the_user = this.username + ' ' + this.password;
+            the_user = `${this.username} ${this.password}`;
         }
         
-        alert(the_user + ' has logged in');
+        alert(`${the_user} has logged in`);
     }
 
     /**
