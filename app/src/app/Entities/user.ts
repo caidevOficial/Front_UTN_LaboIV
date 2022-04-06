@@ -52,7 +52,7 @@ export class User {
      * Sums the ages of the user.
      */
     private sum_user_ages(){
-        if(typeof(this.age_1) === 'number' && typeof(this.age_2) === 'number'){
+        if(typeof(+this.age_1) === 'number' && typeof(+this.age_2) === 'number'){
             this.sum_ages = +this.age_1 + +this.age_2;
         }
     }
