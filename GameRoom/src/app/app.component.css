@@ -5,6 +5,13 @@
 @import "../animation.css";
 @import "../styles.css";
 
+* {
+    margin: 0;
+    padding: 0;
+  
+    box-sizing: border-box;
+  }
+
 /* Header */
 header {
     width: 100%;
@@ -135,6 +142,8 @@ nav .head-links a:hover {
 .main-text > h1 {
     font-size: 80px;
     font-weight: 350;
+    font-family: 'open-sans';
+    font-size: 70px;
     color: #FFF;
     text-shadow: -2px 2px #000;
 }
@@ -143,6 +152,7 @@ nav .head-links a:hover {
     font-size: 65px;
     font-weight: 350;
     font-family: 'Cookie', cursive;
+    font-size: 35px;
     color: #FFF;
     text-shadow: -2px 2px #000;
 }
@@ -153,9 +163,9 @@ footer p {
 }
 
 footer {
-    align-items: center;
+    display: flex;
     background: url(../assets/img/teclado.jpg);
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .white {
