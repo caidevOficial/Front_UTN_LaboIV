@@ -23,6 +23,10 @@ body {
   background: rgba(0, 0, 0, 0.877);
 }
 
+.body-hidden{
+  overflow: hidden;
+}
+
 .green {
   color: #9ec63b;
 }

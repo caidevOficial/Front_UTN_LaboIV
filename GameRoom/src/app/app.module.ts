@@ -9,6 +9,16 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AboutComponent } from './pages/about/about.component';
+import { GamesComponent } from './pages/games/games.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NavVarComponent } from './components/nav-var/nav-var.component';
+import { GitRibbonComponent } from './components/git-ribbon/git-ribbon.component';
+import { NavLinksComponent } from './components/nav-links/nav-links.component';
+import { FormsModule } from '@angular/forms';
+
+// const firebase = require("firebase");
+// // Required for side-effects
+// require("firebase/firestore");
 
 @NgModule({
   declarations: [
@@ -18,10 +28,16 @@ import { AboutComponent } from './pages/about/about.component';
     SignupComponent,
     HeaderComponent,
     FooterComponent,
-    AboutComponent
+    AboutComponent,
+    GamesComponent,
+    NotFoundComponent,
+    NavVarComponent,
+    GitRibbonComponent,
+    NavLinksComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],
