@@ -1,7 +1,7 @@
 // Variables
 
 let nav = document.getElementById('nav');
-let menu = document.getElementById('enlaces');
+let menu = document.getElementById('head-links');
 let abrir = document.getElementById('open');
 let botones = document.getElementsByClassName('btn-header');
 let cerrado = true;

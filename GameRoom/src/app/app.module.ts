@@ -15,6 +15,7 @@ import { NavVarComponent } from './components/nav-var/nav-var.component';
 import { GitRibbonComponent } from './components/git-ribbon/git-ribbon.component';
 import { NavLinksComponent } from './components/nav-links/nav-links.component';
 import { FormsModule } from '@angular/forms';
+import { IconComponent } from './components/icon/icon.component';
 
 // const firebase = require("firebase");
 // // Required for side-effects
@@ -33,7 +34,8 @@ import { FormsModule } from '@angular/forms';
     NotFoundComponent,
     NavVarComponent,
     GitRibbonComponent,
-    NavLinksComponent
+    NavLinksComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,
