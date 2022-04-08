@@ -1,5 +1,3 @@
-import { isNull } from "@angular/compiler/src/output/output_ast";
-
 export class User {
     username: string;
     password: string | undefined;
