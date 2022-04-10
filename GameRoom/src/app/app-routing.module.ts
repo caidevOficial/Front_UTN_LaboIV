@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './pages/about/about.component';
+import { DungeonComponent } from './pages/games/dungeon/dungeon.component';
 import { GamesComponent } from './pages/games/games.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -15,8 +16,8 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   {
     path: 'games', component: GamesComponent, children: [
-      { path: '**', component: NotFoundComponent }
-      // {path: 'tictactoe', component: TicTacToeComponent},
+      {path: 'dungeon', component: DungeonComponent},
+      // { path: '**', component: NotFoundComponent }
       // {path: 'questions', component: QuestionsComponent}
     ]
   },

@@ -16,10 +16,12 @@ import { GitRibbonComponent } from './components/git-ribbon/git-ribbon.component
 import { NavLinksComponent } from './components/nav-links/nav-links.component';
 import { FormsModule } from '@angular/forms';
 import { IconComponent } from './components/icon/icon.component';
+import { CanvaComponent } from './components/Games/Dungeon/canva/canva.component';
+import { DungeonComponent } from './pages/games/dungeon/dungeon.component';
 
-// const firebase = require("firebase");
-// // Required for side-effects
-// require("firebase/firestore");
+//* Start Services
+import { LoadScriptsService } from './load-scripts.service';
+//* End Services
 
 @NgModule({
   declarations: [
@@ -35,14 +37,18 @@ import { IconComponent } from './components/icon/icon.component';
     NavVarComponent,
     GitRibbonComponent,
     NavLinksComponent,
-    IconComponent
+    IconComponent,
+    CanvaComponent,
+    DungeonComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    LoadScriptsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
