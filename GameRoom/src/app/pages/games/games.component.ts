@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadScriptsService } from '../../load-scripts.service';
 
 @Component({
   selector: 'app-games',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GamesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _load_scripts: LoadScriptsService) {
+    this._load_scripts.load_assets_script(['Games/js/filtro',
+      'Games/js/jquery'
+    ]);
+   }
 
   ngOnInit(): void {
   }
