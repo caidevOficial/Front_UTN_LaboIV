@@ -35,30 +35,20 @@ const height_F = 50;
 const width_H = 50;
 const height_H = 50;
 
-const music = new Howl({
-    src: ['../assets/Games/Dungeon/music/battle_theme.mp3'],
-    loop: true
-});
+const music_themes = [
+"battle_theme",
+"vegeta_theme"
+];
 
-const sound_01 = new Howl({
-    src: ['../assets/Games/Dungeon/sound/defeat.wav'],
-    loop: false
-});
-
-const sound_02 = new Howl({
-    src: ['../assets/Games/Dungeon/sound/dbal.wav'],
-    loop: false
-});
-
-const sound_03 = new Howl({
-    src: ['../assets/Games/Dungeon/sound/victory.wav'],
-    loop: false
-});
-
-const sound_04 = new Howl({
-    src: ['../assets/Games/Dungeon/sound/error.wav'],
-    loop: false
-});
+const music_play = () => {
+    let index = ~~(Math.random() * music_themes.length);
+    const music = new Howl({
+        src: [`../assets/Games/Dungeon/music/${music_themes[index]}.ogg`],
+        loop: true
+    });
+    music.volume(0.5);
+    music.play();
+}
 
 var scenary = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -79,10 +69,6 @@ export {
     height_F,
     width_H,
     height_H,
-    music,
-    sound_01,
-    sound_02,
-    sound_03,
-    sound_04,
+    music_play,
     scenary
 }

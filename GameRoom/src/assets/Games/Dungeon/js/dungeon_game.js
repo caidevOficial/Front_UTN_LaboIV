@@ -29,7 +29,7 @@
 
 import { Enemy } from './enemy.js';
 import { Torch } from './torch.js';
-import { FPS, height_F, width_F, width_H, height_H, music, scenary } from './common_vars.js';
+import { FPS, height_F, width_F, width_H, height_H, music_play, scenary } from './common_vars.js';
 import { Hero } from './hero.js';
 
 var canvas;
@@ -38,6 +38,7 @@ const KEY_UP = 87;
 const KEY_DOWN = 83;
 const KEY_LEFT = 65;
 const KEY_RIGHT = 68;
+const KEY_SPEAK = 69;
 
 const draw_scenary = (tileMap) => {
   for (var y = 0; y < 10; y++) {
@@ -60,7 +61,8 @@ const dungeon_game_init = () => {
   var hero_tile = new Image();
   hero_tile.src = '../assets/Games/Dungeon/img/tilemap_hero.png';
 
-  music.play();
+  //* Player
+  const avatar = new Hero();
 
   const enemy = [];
   //* Create 4 enemies
@@ -69,8 +71,8 @@ const dungeon_game_init = () => {
   enemy.push(new Enemy(7, 7));
   enemy.push(new Enemy(9, 7));
 
-  //* Player
-  const avatar = new Hero();
+  music_play();
+  avatar.hero_init_phrase();
 
   //* Create the torch
   const torch_img = new Torch(0, 0);
@@ -90,11 +92,13 @@ const dungeon_game_init = () => {
       case KEY_RIGHT:
         avatar.go_rigth();
         break;
+      case KEY_SPEAK:
+        avatar.hero_random_say();
     }
 
   });
 
-  setInterval(function () {
+  setInterval(() => {
     principal(hero_tile, tileMap, torch_img, avatar, enemy);
   }, 1000 / FPS);
 }
@@ -109,7 +113,6 @@ const principal = (hero_tile, tileMap, torch_img, avatar, enemy) => {
   draw_scenary(tileMap);
   torch_img.draw(ctx, tileMap, width_F, height_F);
   avatar.draw(ctx, hero_tile, width_H, height_H);
-
 
   enemy.forEach((e) => {
     e.move(avatar);

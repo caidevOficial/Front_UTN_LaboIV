@@ -27,7 +27,8 @@
  * @author Facundo Falcone <CaidevOficial> 
  */
 
- import { scenary, sound_01, sound_02, sound_03, sound_04 } from './common_vars.js';
+ import { scenary } from './common_vars.js';
+ import './howler.core.js'
 
 class Hero {
     _x;
@@ -35,6 +36,31 @@ class Hero {
     _KEY;
     _move_X = 0;
     _move_Y = 1;
+    _hero_basic_sound = [
+        'dball_found',
+        'defeat',
+        'error',
+        'victory',
+        'enemy_rage',
+        'game_init'
+    ];
+
+    _hero_phrasings = [
+        'balloon',
+        'defeat_after_frieza',
+        'demeaning',
+        'dont_talkme',
+        'ears',
+        'idiot',
+        'idiot_full',
+        'if_i_train_harder',
+        'insect',
+        'power_is_all',
+        'saiyajin_warrior',
+        'this_fight_is_not',
+        'what_did_u_said',
+        'with_me'
+    ];
 
     /**
      * Constructor for the hero.
@@ -91,6 +117,20 @@ class Hero {
      */
     get Hero_KEY() {
         return this._KEY;
+    }
+
+    /**
+     * Gets the list of sounds for the hero.
+     */
+    get Phrases_Hero() {
+        return this._hero_phrasings;
+    }
+
+    /**
+     * Gets the basic sound for the hero.
+     */
+    get Hero_Basic_Sounds() {
+        return this._hero_basic_sound;
     }
 
     //* ###### Properties: Setters ######
@@ -249,18 +289,49 @@ class Hero {
      * Plays a victory sound and sets the hero in the initial position.
      */
     victory = () => {
-        sound_03.play();
-        console.log('I\'ll be the legendary Super Saiyan\nFinal Flaaaaaash!');
-        this.set_default_position();
+        this.hero_say(this._hero_basic_sound[3]);
+        console.log('Vegeta: Finally i\'ll be immortal and the universe emperor!!');
+        setTimeout(
+            () => {
+                console.log('Frieza: You\'ll pay, damn Saiyan!');
+            } ,1000);
+            this.set_default_position();
     }
 
     /**
      * Plays a death sound and sets the hero in the initial position.
      */
     death = () => {
-        sound_01.play();
-        console.log('Avenge me, Kakarot!!!');
+        this.hero_say(this._hero_basic_sound[1]);
+        console.log('Vegeta: Avenge me, Kakarot!!!');
         this.set_default_position();
+    }
+
+    /**
+     * Plays the initial phrase of the hero in the game.
+     */
+    hero_init_phrase = () => {
+        this.hero_say(this._hero_basic_sound[5]);
+    }
+
+    /**
+     * Plays a specific sound of the player.
+     * @param {string} phrase 
+     */
+     hero_say = (phrase) => {
+        let hero_speak = new Howl({
+            src: [`../assets/Games/Dungeon/sound/${phrase}.ogg`],
+            loop: false
+        });
+        hero_speak.play();
+    }
+
+    /**
+     * Plays a random sound of the player.
+     */
+    hero_random_say = () => {
+        let index = ~~(Math.random() * this._hero_phrasings.length);
+        this.hero_say(`/phrases/${this._hero_phrasings[index]}`);
     }
 
     /**
@@ -271,19 +342,24 @@ class Hero {
 
         //? With the Dragon Ball
         if (game_object == 3) {
-            sound_02.play();
             this.Hero_KEY = true;
             scenary[this.Hero_y][this.Hero_x] = 2;
-            console.log('You have the 1 Star Dragon Ball!!');
+            console.log('Vegeta: Finally i have the 1 Star Dragon Ball!!');
+            setTimeout(
+                () => {
+                    this.hero_say(this._hero_basic_sound[4]);
+                    console.log("Frieza: Catch Vegeta, don't let him escape!!");
+                } , 2600);
+                this.hero_say(this._hero_basic_sound[0]); // Catch the Dball
         }
 
         //? In the stairs
         if (game_object == 1) {
-            if (this.Hero_KEY)
-                this.victory();
-            else {
-                console.log('You can\'t leave without the Dragon Ball, insect!');
-                sound_04.play();
+            if (this.Hero_KEY){
+            this.victory();
+            }else {
+                console.log('Vegeta: We can\'t leave this place without the Dragon Ball, insect!');
+                this.hero_say(this._hero_basic_sound[2]);
             }
         }
     }
