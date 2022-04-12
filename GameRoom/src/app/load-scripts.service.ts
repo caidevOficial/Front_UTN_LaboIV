@@ -86,4 +86,15 @@ export class LoadScriptsService {
       document.getElementsByTagName('head')[0].appendChild(link_style);
     });
   }
+
+  append_background = (b_url: string, id: string) => {
+    const canvas_div = document.getElementById(id);
+    if(canvas_div){
+      const image = document.createElement('img')
+      image.src = b_url;
+      image.width = 750;
+      image.height = 500;
+      canvas_div.appendChild(image);
+    }
+  }
 }

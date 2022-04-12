@@ -3,19 +3,29 @@
 .game-screen {
     width: 100%;
     height: 100%;
-    background: #000;
-    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.game-info{
+.game-info {
     width: 100%;
     height: 100%;
+    background-color: #000;
     color: aliceblue;
-    background: #000;
-    display: flexbox;
+    display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.banner {
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#dbz {
+    background-color: #000;
+    background-image: '../../../../assets/Games/Dungeon/background/BG_11.png';
 }

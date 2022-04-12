@@ -72,7 +72,9 @@ const dungeon_game_init = () => {
   enemy.push(new Enemy(9, 7));
 
   music_play();
-  avatar.hero_init_phrase();
+  setTimeout( () => {
+    avatar.hero_init_phrase();
+  }, 1000);
 
   //* Create the torch
   const torch_img = new Torch(0, 0);
@@ -93,7 +95,7 @@ const dungeon_game_init = () => {
         avatar.go_rigth();
         break;
       case KEY_SPEAK:
-        avatar.hero_random_say();
+        avatar.hero_random_speak();
     }
 
   });
@@ -124,7 +126,7 @@ const principal = (hero_tile, tileMap, torch_img, avatar, enemy) => {
  * Event listener for Load.
  */
  window.addEventListener("load", () => {
-  console.log('Inside Dungeon Game');
+  console.log('Start Mision:\nVegeta: Frieza has 5 dragon balls, now i\'m going to search for the missing one!');
   dungeon_game_init();
 });
 

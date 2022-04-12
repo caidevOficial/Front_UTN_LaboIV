@@ -27,8 +27,8 @@
  * @author Facundo Falcone <CaidevOficial> 
  */
 
- import { scenary } from './common_vars.js';
- import './howler.core.js'
+import { scenary } from './common_vars.js';
+import './howler.core.js'
 
 class Hero {
     _x;
@@ -36,6 +36,7 @@ class Hero {
     _KEY;
     _move_X = 0;
     _move_Y = 1;
+    _is_alive = true;
     _hero_basic_sound = [
         'dball_found',
         'defeat',
@@ -51,6 +52,7 @@ class Hero {
         'demeaning',
         'dont_talkme',
         'ears',
+        'heartless_sound',
         'idiot',
         'idiot_full',
         'if_i_train_harder',
@@ -122,7 +124,7 @@ class Hero {
     /**
      * Gets the list of sounds for the hero.
      */
-    get Phrases_Hero() {
+    get Hero_Phrases() {
         return this._hero_phrasings;
     }
 
@@ -131,6 +133,13 @@ class Hero {
      */
     get Hero_Basic_Sounds() {
         return this._hero_basic_sound;
+    }
+
+    /**
+     * Gets the status of the hero for 'Alive' or 'Dead'.
+     */
+    get Hero_Alive() {
+        return this._is_alive;
     }
 
     //* ###### Properties: Setters ######
@@ -158,7 +167,7 @@ class Hero {
      * 
      * @param {number} value - The new X position.
      */
-     set Hero_move_X(value) {
+    set Hero_move_X(value) {
         this._move_X = value;
     }
 
@@ -181,15 +190,22 @@ class Hero {
     }
 
     /**
+     * Sets the status of the hero for 'Alive' or 'Dead'.
+     */
+    set Hero_Alive(value) {
+        this._is_alive = value;
+    }
+
+    /**
      * Draws the hero.
      */
     draw = (ctx, tileMap, width_H, height_H) => {
-        ctx.drawImage(tileMap, 
+        ctx.drawImage(tileMap,
             this._move_X * 32,
             this._move_Y * 32,
             32, 32,
-            this.Hero_x*width_H, this.Hero_y*height_H,
-            width_H,height_H
+            this.Hero_x * width_H, this.Hero_y * height_H,
+            width_H, height_H
         );
     }
 
@@ -218,9 +234,9 @@ class Hero {
      * Checks the movement of the sprite.
      */
     check_movement = () => {
-        if(this.Hero_move_X < 3) {
+        if (this.Hero_move_X < 3) {
             this.Hero_move_X++;
-        }else{
+        } else {
             this.Hero_move_X = 0;
         }
     }
@@ -229,11 +245,13 @@ class Hero {
      * If the hero isn't on the margins, the hero moves up.
      */
     go_up = () => {
-        if (!this.margins(this.Hero_x, this.Hero_y - 1)) {
-            this.Hero_y--;
-            this.Hero_move_Y = 0;
-            this.check_movement();
-            this.obj_logics();
+        if(this.Hero_Alive){
+            if (!this.margins(this.Hero_x, this.Hero_y - 1)) {
+                this.Hero_y--;
+                this.Hero_move_Y = 0;
+                this.check_movement();
+                this.obj_logics();
+            }
         }
     }
 
@@ -241,11 +259,13 @@ class Hero {
      * If the hero isn't on the margins, the hero moves down.
      */
     go_down = () => {
-        if (!this.margins(this.Hero_x, this.Hero_y + 1)) {
-            this.Hero_y++;
-            this.Hero_move_Y = 1;
-            this.check_movement();
-            this.obj_logics();
+        if(this.Hero_Alive){
+            if (!this.margins(this.Hero_x, this.Hero_y + 1)) {
+                this.Hero_y++;
+                this.Hero_move_Y = 1;
+                this.check_movement();
+                this.obj_logics();
+            }
         }
     }
 
@@ -253,11 +273,13 @@ class Hero {
      * If the hero isn't on the margins, the hero moves left.
      */
     go_left = () => {
-        if (!this.margins(this.Hero_x - 1, this.Hero_y)) {
-            this.Hero_x--;
-            this.Hero_move_Y = 2;
-            this.check_movement();
-            this.obj_logics();
+        if(this.Hero_Alive){
+            if (!this.margins(this.Hero_x - 1, this.Hero_y)) {
+                this.Hero_x--;
+                this.Hero_move_Y = 2;
+                this.check_movement();
+                this.obj_logics();
+            }
         }
     }
 
@@ -265,11 +287,13 @@ class Hero {
      * If the hero isn't on the margins, the hero moves right.
      */
     go_rigth = () => {
-        if (!this.margins(this.Hero_x + 1, this.Hero_y)) {
-            this.Hero_x++;
-            this.Hero_move_Y = 3;
-            this.check_movement();
-            this.obj_logics();
+        if(this.Hero_Alive){
+            if (!this.margins(this.Hero_x + 1, this.Hero_y)) {
+                this.Hero_x++;
+                this.Hero_move_Y = 3;
+                this.check_movement();
+                this.obj_logics();
+            }
         }
     }
 
@@ -280,45 +304,52 @@ class Hero {
         this.Hero_x = 1;
         this.Hero_y = 1;
         this.Hero_move_Y = 1;
-
-        this.Hero_KEY = false;   //el player ya no tiene la key
-        scenary[8][3] = 3;  //volvemos a poner la key en su sitio
+        if(!this.Hero_Alive){
+            this.Hero_Alive = true;
+        }
+        this.Hero_KEY = false;   // The player doesn't have the key.
+        scenary[8][3] = 3;  // The key is in the initial position.
     }
 
     /**
      * Plays a victory sound and sets the hero in the initial position.
      */
     victory = () => {
-        this.hero_say(this._hero_basic_sound[3]);
+        this.hero_speak(this.Hero_Basic_Sounds[3]);
         console.log('Vegeta: Finally i\'ll be immortal and the universe emperor!!');
-        setTimeout(
-            () => {
-                console.log('Frieza: You\'ll pay, damn Saiyan!');
-            } ,1000);
-            this.set_default_position();
+        setTimeout(() => {
+            console.log('Frieza: You\'ll pay, damn Saiyan!');
+        }, 1000);
+        this.set_default_position();
     }
 
     /**
      * Plays a death sound and sets the hero in the initial position.
      */
     death = () => {
-        this.hero_say(this._hero_basic_sound[1]);
-        console.log('Vegeta: Avenge me, Kakarot!!!');
-        this.set_default_position();
+        if(this.Hero_Alive){
+            this.hero_speak(this.Hero_Basic_Sounds[1]);
+            this.Hero_Alive = false;
+            this.Hero_move_Y = 4; // Sprite death
+            console.log('Vegeta: Avenge me, Kakarot!!!');
+            setTimeout(() => {
+                this.set_default_position();
+            }, 7000);
+        }
     }
 
     /**
      * Plays the initial phrase of the hero in the game.
      */
     hero_init_phrase = () => {
-        this.hero_say(this._hero_basic_sound[5]);
+        this.hero_speak(this.Hero_Basic_Sounds[5]);
     }
 
     /**
      * Plays a specific sound of the player.
      * @param {string} phrase 
      */
-     hero_say = (phrase) => {
+    hero_speak = (phrase) => {
         let hero_speak = new Howl({
             src: [`../assets/Games/Dungeon/sound/${phrase}.ogg`],
             loop: false
@@ -329,9 +360,9 @@ class Hero {
     /**
      * Plays a random sound of the player.
      */
-    hero_random_say = () => {
-        let index = ~~(Math.random() * this._hero_phrasings.length);
-        this.hero_say(`/phrases/${this._hero_phrasings[index]}`);
+    hero_random_speak = () => {
+        let index = ~~(Math.random() * this.Hero_Phrases.length);
+        this.hero_speak(`/phrases/${this.Hero_Phrases[index]}`);
     }
 
     /**
@@ -345,21 +376,20 @@ class Hero {
             this.Hero_KEY = true;
             scenary[this.Hero_y][this.Hero_x] = 2;
             console.log('Vegeta: Finally i have the 1 Star Dragon Ball!!');
-            setTimeout(
-                () => {
-                    this.hero_say(this._hero_basic_sound[4]);
+            setTimeout( () => {
+                    this.hero_speak(this.Hero_Basic_Sounds[4]);
                     console.log("Frieza: Catch Vegeta, don't let him escape!!");
-                } , 2600);
-                this.hero_say(this._hero_basic_sound[0]); // Catch the Dball
+                }, 2600);
+            this.hero_speak(this.Hero_Basic_Sounds[0]); // Catch the Dball
         }
 
         //? In the stairs
         if (game_object == 1) {
-            if (this.Hero_KEY){
-            this.victory();
-            }else {
+            if (this.Hero_KEY) {
+                this.victory();
+            } else {
                 console.log('Vegeta: We can\'t leave this place without the Dragon Ball, insect!');
-                this.hero_say(this._hero_basic_sound[2]);
+                this.hero_speak(this.Hero_Basic_Sounds[2]);
             }
         }
     }
