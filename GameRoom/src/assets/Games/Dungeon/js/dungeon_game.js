@@ -56,7 +56,7 @@ const dungeon_game_init = () => {
   ctx = canvas.getContext('2d');
   
   var tileMap = new Image();
-  tileMap.src = '../assets/Games/Dungeon/img/tilemap_dbz.png';
+  tileMap.src = '../assets/Games/Dungeon/img/tilemap_dbz_namek.png';
   var hero_tile = new Image();
   hero_tile.src = '../assets/Games/Dungeon/img/tilemap_hero.png';
 
@@ -123,4 +123,11 @@ const principal = (hero_tile, tileMap, torch_img, avatar, enemy) => {
  window.addEventListener("load", () => {
   console.log('Inside Dungeon Game');
   dungeon_game_init();
+});
+
+/**
+ * Event listener for Close.
+ */
+window.addEventListener("close", () => {
+  music.stop();
 });

@@ -26,6 +26,20 @@ export class LoginComponent implements OnInit {
       'Login/vendor/countdowntime/countdowntime',
       'Login/js/main'
     ]);
+
+    this._load_scripts.load_url_styles([
+      "./assets/Login/images/login_icons/favicon.ico",
+      "./assets/Login/vendor/bootstrap/css/bootstrap.min.css",
+      "./assets/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css",
+      "./assets/Login/fonts/iconic/css/material-design-iconic-font.min.css",
+      "./assets/Login/vendor/animate/animate.css",
+      "./assets/Login/vendor/css-hamburgers/hamburgers.min.css",
+      "./assets/Login/vendor/animsition/css/animsition.min.css",
+      "./assets/Login/vendor/select2/select2.min.css",
+      "./assets/Login/vendor/daterangepicker/daterangepicker.css",
+      "./assets/Login/css/util.css",
+      "./assets/Login/css/main.css",
+    ]);
   }
 
   ngOnInit(): void {

@@ -12,7 +12,18 @@ export class HeaderComponent implements OnInit {
     this._load_scripts.load_script_fullpath([
       './assets/Nav/js_scripts/nav_animation'
     ]);
+
+    this._load_scripts.load_url_script([
+      'https://kit.fontawesome.com/952007f668.js'
+    ]);
+
+    this._load_scripts.load_url_styles([
+     'https://fonts.googleapis.com/css2?family=Cookie&display=swap',
+     
+    ])
    }
+
+   
 
   ngOnInit(): void {
   }

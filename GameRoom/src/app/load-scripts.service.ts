@@ -72,4 +72,18 @@ export class LoadScriptsService {
       document.getElementsByTagName('head')[0].appendChild(script);
     });
   }
+
+  /**
+   * Loads specific styles from the internet into the DOM.
+   * @param urls The urls of the styles to load.
+   */
+   load_url_styles = (urls: string[]) => {
+    urls.forEach(url => {
+      const link_style = document.createElement('link');
+      link_style.rel = 'stylesheet';
+      link_style.href = url;
+      link_style.type = 'text/css';
+      document.getElementsByTagName('head')[0].appendChild(link_style);
+    });
+  }
 }

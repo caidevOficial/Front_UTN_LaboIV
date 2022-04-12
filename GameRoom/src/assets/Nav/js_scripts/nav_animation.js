@@ -4,7 +4,7 @@ const nav = document.getElementById('nav');
 const menu = document.getElementById('head-links');
 const open = document.getElementById('open');
 const buttons = document.getElementsByClassName('btn-header');
-const closed = true;
+let closed = true;
 
 const menus = () =>{
     let current_ofsset = window.pageYOffset;
