@@ -1,13 +1,20 @@
 
 <header>
     <nav id="nav" class="nav1">
-        <div id="sticky-nav" class="contenedor-nav">
+        <div class="contenedor-nav">
             <div class="logo">
-                <img src="../../../assets/icons/iconApp.ico" alt="">
+                <img src="../../../assets/Nav/Logos/logo_utn_white.png" alt="">
             </div>
             <app-git-ribbon></app-git-ribbon>
-            <app-nav-links></app-nav-links>
-            <div class="icono" id="open">
+            <!-- <app-nav-links></app-nav-links> -->
+            <div class="head-links" id="head-links">
+                <a routerLink="/home" id="link-home" class="btn-header">Home</a>
+                <a routerLink="/login" id="link-login" class="btn-header">Login</a>
+                <a routerLink="/games" class="btn-header">Games</a>
+                <a routerLink="/about" id="link-about" class="btn-header">About Me</a>
+            </div>
+            <app-icon></app-icon>
+            <div class="icon" id="open">
                 <span>&#9776;</span>
             </div>
         </div>
