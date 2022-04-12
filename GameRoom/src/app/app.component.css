@@ -97,9 +97,9 @@ nav {
 }
 
 .nav2 {
-    background: var(--fondo);
+    background: rgb(65, 0, 170);
     height: 100px;
-    color: #000;
+    color: #f2f2f2;
 }
 
 .contenedor-nav {

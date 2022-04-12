@@ -16,7 +16,6 @@ import { GitRibbonComponent } from './components/git-ribbon/git-ribbon.component
 import { NavLinksComponent } from './components/nav-links/nav-links.component';
 import { FormsModule } from '@angular/forms';
 import { IconComponent } from './components/icon/icon.component';
-import { CanvaComponent } from './components/Games/Dungeon/canva/canva.component';
 import { DungeonComponent } from './pages/games/dungeon/dungeon.component';
 
 //* Start Services
@@ -38,7 +37,6 @@ import { LoadScriptsService } from './load-scripts.service';
     GitRibbonComponent,
     NavLinksComponent,
     IconComponent,
-    CanvaComponent,
     DungeonComponent
   ],
   imports: [
