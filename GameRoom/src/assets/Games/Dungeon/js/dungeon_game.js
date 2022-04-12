@@ -34,6 +34,10 @@ import { Hero } from './hero.js';
 
 var canvas;
 var ctx;
+const KEY_UP = 87;
+const KEY_DOWN = 83;
+const KEY_LEFT = 65;
+const KEY_RIGHT = 68;
 
 const draw_scenary = (tileMap) => {
   for (var y = 0; y < 10; y++) {
@@ -74,16 +78,16 @@ const dungeon_game_init = () => {
   //* Keyboard events
   document.addEventListener('keydown', (key_pressed) => {
     switch (key_pressed.keyCode) {
-      case 38:
+      case KEY_UP:
         avatar.go_up();
         break;
-      case 40:
+      case KEY_DOWN:
         avatar.go_down();
         break;
-      case 37:
+      case KEY_LEFT:
         avatar.go_left();
         break;
-      case 39:
+      case KEY_RIGHT:
         avatar.go_rigth();
         break;
     }
