@@ -33,6 +33,8 @@ class Enemy {
 
     _x;
     _y;
+    _move_x;
+    _move_y;
     _direction;
     _delay;
     _frame;
@@ -95,6 +97,24 @@ class Enemy {
         return this._counter;
     }
 
+    /**
+     * Gets the enemy X position for the sprite.
+     * 
+     * @returns {number} The X position for the sprite.
+     */
+    get Enemy_move_X() {
+        return this._move_x;
+    }
+
+    /**
+     * Gets the enemy Y position for the sprite.
+     * 
+     * @returns {number} The Y position for the sprite.
+     */
+    get Enemy_move_Y() {
+        return this._move_y;
+    }
+
     //* ######### Setters #########
 
     /**
@@ -143,6 +163,33 @@ class Enemy {
      */
     set Enemy_counter(counter) {
         this._counter = counter;
+    }
+
+    /**
+     * Sets the enemy X position for the sprite.
+     * @param {number} x - The new X position for the sprite.
+     */
+    set Enemy_move_X(x) {
+        this._move_x = x;
+    }
+
+    /**
+     * Sets the enemy Y position for the sprite.
+     * @param {number} y - The new Y position for the sprite.
+     */
+    set Enemy_move_Y(y) {
+        this._move_y = y;
+    }
+
+    /**
+     * Checks the movement of the sprite.
+     */
+     check_movement = () => {
+        if(this.Enemy_move_X < 3) {
+            this.Enemy_move_X++;
+        }else{
+            this.Enemy_move_X = 0;
+        }
     }
 
     draw = (ctx, tileMap, width_F, height_F) => {
