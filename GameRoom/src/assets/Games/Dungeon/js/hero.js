@@ -27,7 +27,7 @@
  * @author Facundo Falcone <CaidevOficial> 
  */
 
-import { scenary } from './common_vars.js';
+import { scenary, BALL, DOOR } from './common_vars.js';
 import './howler.core.js'
 
 class Hero {
@@ -350,11 +350,13 @@ class Hero {
      * @param {string} phrase 
      */
     hero_speak = (phrase) => {
-        let hero_speak = new Howl({
-            src: [`../assets/Games/Dungeon/sound/${phrase}.ogg`],
-            loop: false
-        });
-        hero_speak.play();
+        if(this.Hero_Alive){
+            let hero_speak = new Howl({
+                src: [`../assets/Games/Dungeon/sound/${phrase}.ogg`],
+                loop: false
+            });
+            hero_speak.play();
+        }
     }
 
     /**
@@ -372,7 +374,7 @@ class Hero {
         var game_object = scenary[this.Hero_y][this.Hero_x];
 
         //? With the Dragon Ball
-        if (game_object == 3) {
+        if (game_object == BALL) {
             this.Hero_KEY = true;
             scenary[this.Hero_y][this.Hero_x] = 2;
             console.log('Vegeta: Finally i have the 1 Star Dragon Ball!!');
@@ -384,7 +386,7 @@ class Hero {
         }
 
         //? In the stairs
-        if (game_object == 1) {
+        if (game_object == DOOR) {
             if (this.Hero_KEY) {
                 this.victory();
             } else {

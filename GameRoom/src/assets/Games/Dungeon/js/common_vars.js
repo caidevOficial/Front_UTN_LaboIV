@@ -34,12 +34,19 @@ const width_F = 50;
 const height_F = 50;
 const width_H = 50;
 const height_H = 50;
+const WALL = 0;
+const LAND = 2;
+const DOOR = 1;
+const BALL = 3;
 
 const music_themes = [
-"battle_theme",
-"vegeta_theme"
+    "battle_theme",
+    "vegeta_theme"
 ];
 
+/**
+ * Plays a random music theme from the music_themes array.
+ */
 const music_play = () => {
     let index = ~~(Math.random() * music_themes.length);
     const music = new Howl({
@@ -50,17 +57,20 @@ const music_play = () => {
     music.play();
 }
 
+/**
+ * Array of the game's map for Walls, the Door, the object and the Land.
+ */
 var scenary = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 2, 2, 0, 0, 0, 2, 2, 2, 2, 0, 0, 2, 2, 0],
-    [0, 0, 2, 2, 2, 2, 2, 0, 0, 2, 0, 0, 2, 0, 0],
-    [0, 0, 2, 0, 0, 0, 2, 2, 0, 2, 2, 2, 2, 0, 0],
-    [0, 0, 2, 2, 2, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0],
-    [0, 2, 2, 0, 2, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0],
-    [0, 0, 2, 0, 2, 2, 2, 2, 2, 0, 0, 2, 2, 2, 0],
-    [0, 2, 2, 2, 0, 0, 2, 0, 0, 0, 1, 0, 0, 2, 0],
-    [0, 2, 2, 3, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL],
+    [WALL, LAND, LAND, WALL, WALL, WALL, LAND, LAND, LAND, LAND, WALL, WALL, LAND, LAND, WALL],
+    [WALL, WALL, LAND, LAND, LAND, LAND, LAND, WALL, WALL, LAND, WALL, WALL, LAND, WALL, WALL],
+    [WALL, WALL, LAND, WALL, WALL, WALL, LAND, LAND, WALL, LAND, LAND, LAND, LAND, WALL, WALL],
+    [WALL, WALL, LAND, LAND, LAND, WALL, WALL, LAND, WALL, WALL, WALL, LAND, WALL, WALL, WALL],
+    [WALL, LAND, LAND, WALL, LAND, WALL, WALL, LAND, WALL, WALL, WALL, LAND, WALL, WALL, WALL],
+    [WALL, WALL, LAND, WALL, LAND, LAND, LAND, LAND, LAND, WALL, WALL, LAND, LAND, LAND, WALL],
+    [WALL, LAND, LAND, LAND, WALL, WALL, LAND, WALL, WALL, WALL, DOOR, WALL, WALL, LAND, WALL],
+    [WALL, LAND, LAND, BALL, WALL, WALL, LAND, LAND, LAND, LAND, LAND, LAND, LAND, LAND, WALL],
+    [WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL]
 ]
 
 export {
@@ -70,5 +80,9 @@ export {
     width_H,
     height_H,
     music_play,
-    scenary
+    scenary,
+    BALL,
+    DOOR,
+    LAND,
+    WALL
 }

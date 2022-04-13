@@ -52,6 +52,23 @@ const draw_scenary = (tileMap) => {
   }
 }
 
+const delete_canvas = () => {
+  canvas.width = 750;
+  canvas.height = 500;
+}
+
+const principal = (hero_tile, tileMap, torch_img, avatar, enemy) => {
+  delete_canvas();
+  draw_scenary(tileMap);
+  torch_img.draw(ctx, tileMap, width_F, height_F);
+  avatar.draw(ctx, hero_tile, width_H, height_H);
+
+  enemy.forEach((e) => {
+    e.move(avatar);
+    e.draw(ctx, tileMap, width_F, height_F);
+  });
+}
+
 const dungeon_game_init = () => {
   canvas = document.getElementById('canvas');
   ctx = canvas.getContext('2d');
@@ -103,23 +120,6 @@ const dungeon_game_init = () => {
   setInterval(() => {
     principal(hero_tile, tileMap, torch_img, avatar, enemy);
   }, 1000 / FPS);
-}
-
-const delete_canvas = () => {
-  canvas.width = 750;
-  canvas.height = 500;
-}
-
-const principal = (hero_tile, tileMap, torch_img, avatar, enemy) => {
-  delete_canvas();
-  draw_scenary(tileMap);
-  torch_img.draw(ctx, tileMap, width_F, height_F);
-  avatar.draw(ctx, hero_tile, width_H, height_H);
-
-  enemy.forEach((e) => {
-    e.move(avatar);
-    e.draw(ctx, tileMap, width_F, height_F);
-  });
 }
 
 /**
