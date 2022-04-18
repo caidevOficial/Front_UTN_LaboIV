@@ -5,19 +5,19 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 50vh;
     background: #000;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     font-family: 'Poppins', sans-serif;
 }
 
 #time {
-    width: 100px;
-    height: 100px;
+    width: -50%;
+    height: 30%;
     display: flex;
-    /* gap: 5px; */
+    gap: 5px;
     color: aliceblue;
 }
 
@@ -63,7 +63,7 @@ section {
     position: absolute;
     transform: translateX(-50%) translateY(-10px);
     font-size: 0.35em;
-    font-weight: 150;
+    font-weight: 300;
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
