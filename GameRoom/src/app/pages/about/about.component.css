@@ -1,1 +1,67 @@
 @import "../../app.component.css";
+
+:root {
+    --margenes: 60px;
+    --espacios: 10px;
+    --espacios-contenido: 45px;
+    --back-about: rgb(34, 39, 46);
+}
+
+/* About */
+.about-main-container {
+    margin: auto;
+    padding: var(--margenes) 0;
+    width: 90%;
+    max-width: 1000px;
+    text-align: center;
+    overflow: hidden;
+    background-color: var(--back-about);
+}
+
+.about-container h3 {
+    font-size: var(--titulos);
+    color: var(--color1);
+    margin-bottom: var(--espacios);
+}
+
+.about-container h4 {
+    font-size: var(--subtitulos);
+    font-weight: 300;
+    color: #fff;
+}
+
+.about-container p {
+    font-size: var(--subtitulos);
+    font-weight: 300;
+    color: var(--color1);
+}
+
+.about-black {
+    background: linear-gradient(to bottom,
+            rgba(34, 39, 46, 0.500),
+            rgba(255, 255, 255, 0.250))
+}
+
+.about-background {
+    /*background-color: #545454;*/
+    background-color: rgb(34, 39, 46);
+    /* Like github dark mode */
+    color: rgb(233, 230, 227);
+}
+
+#myPhoto {
+    border-radius: 200px;
+}
+
+#credential {
+    background-color: rgba(68, 70, 70, 0.062);
+}
+
+
+.coral {
+    color: #ff5613;
+}
+
+.light-blue {
+    color: #00c4cc;
+}

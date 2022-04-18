@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadScriptsService } from '../../load-scripts.service';
 
 @Component({
   selector: 'app-nav-var',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavVarComponent implements OnInit {
 
-  constructor() {}
+  constructor(private _load_scripts: LoadScriptsService) {
+    this._load_scripts.load_script_fullpath([
+      "./assets/Nav/js_scripts/nav_scroll"
+    ]);
+  }
 
   ngOnInit(): void {
   }

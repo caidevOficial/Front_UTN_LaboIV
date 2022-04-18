@@ -6,7 +6,7 @@ const open = document.getElementById('open');
 const buttons = document.getElementsByClassName('btn-header');
 let closed = true;
 
-const menus = () =>{
+const menus = () => {
     let current_ofsset = window.pageYOffset;
 
     if(current_ofsset <= 500){

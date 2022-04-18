@@ -20,6 +20,8 @@ import { DungeonComponent } from './pages/games/dungeon/dungeon.component';
 
 //* Start Services
 import { LoadScriptsService } from './load-scripts.service';
+import { DigitalClockComponent } from './components/digital-clock/digital-clock.component';
+import { TimeComponent } from './pages/time/time.component';
 //* End Services
 
 @NgModule({
@@ -37,7 +39,9 @@ import { LoadScriptsService } from './load-scripts.service';
     GitRibbonComponent,
     NavLinksComponent,
     IconComponent,
-    DungeonComponent
+    DungeonComponent,
+    DigitalClockComponent,
+    TimeComponent
   ],
   imports: [
     BrowserModule,
@@ -49,4 +53,6 @@ import { LoadScriptsService } from './load-scripts.service';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  Title: string = 'GameRoom';
+}

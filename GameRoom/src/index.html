@@ -11,28 +11,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
     integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-  <script>
-    function openURL(url, width, height) {
-      open(url, '', `top=100,left=100,width=${width},height=${height}`);
-    }
-  </script>
-
-  <script type="text/javascript">
-    // When the user scrolls the page, execute myFunction
-    window.onscroll = function () {
-      myFunction();
-      //myStickyFunction();
-    };
-
-    function myFunction() {
-      var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      var scrolled = (winScroll / height) * 100;
-      document.getElementById("myBar").style.width = `${scrolled}%`;
-    }
-  </script>
-
 </head>
 
 <body class="mat-typography">

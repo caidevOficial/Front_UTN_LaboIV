@@ -3,3 +3,11 @@
     font-size: 24px;
     padding: 23.5px 20px;
 }
+
+@media screen and (max-width: 700px) {
+  
+    .icon {
+      display: block;
+      cursor: pointer;
+    }
+  }

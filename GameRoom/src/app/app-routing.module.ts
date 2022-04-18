@@ -7,6 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { TimeComponent } from './pages/time/time.component';
 
 // ?# Routes of the application
 const routes: Routes = [
@@ -14,8 +15,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'about', component: AboutComponent },
-  {
-    path: 'games', component: GamesComponent, children: [
+  { path: 'time', component: TimeComponent },
+  { path: 'games', component: GamesComponent, children: [
       {path: 'dungeon', component: DungeonComponent},
       // { path: '**', component: NotFoundComponent }
       // {path: 'questions', component: QuestionsComponent}
