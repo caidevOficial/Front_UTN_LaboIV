@@ -67,7 +67,7 @@ class Hero {
         'with_me'
     ];
     _HERO_MSG_FORMAT = 'color: #FFF; background-color: blue; font-size: 10px; border: 2px solid white; border-radius: 10px; pading: 5px 10px;';
-    _SUPER_HERO_MSG_FORMAT = 'color: black; background-color: yellow; font-size: 10px; border: 2px solid white; border-radius: 10px; pading: 5px 10px;';
+    _SUPER_HERO_MSG_FORMAT = 'color: black; background-color: yellow; font-size: 10px; border: 2px solid blue; border-radius: 10px; pading: 5px 10px;';
     _VILLAIN_MSG_FORMAT = 'color: #FFF; background-color: purple; font-size: 10px; border: 2px solid white; border-radius: 10px; pading: 5px 10px;';
 
 
@@ -421,7 +421,7 @@ class Hero {
                 this.Hero_move_X = 0;
                 this.Hero_move_Y = 1;
             } , 2000);
-            console.log("%cI\'m Super Vegeta!!!", this.Hero_SMSG_Format);
+            console.log("%cSuper Vegita: I\'m Super Vegita!!!", this.Hero_SMSG_Format);
             this.transform_Y(5);
         }, 250);
         this.hero_speak(this.Hero_Basic_Sounds[7]); // scream wait 4 sec
@@ -433,7 +433,7 @@ class Hero {
      */
     victory = (FORMAT) => {
         this.hero_speak(this.Hero_Basic_Sounds[3]);
-        console.log('%cVegeta: Finally i\'ll be immortal and the universe emperor!!', this.Hero_MSG_Format);
+        console.log('%cSuper Vegita: Finally i\'ll be immortal and the universe emperor!!', this.Hero_SMSG_Format);
         setTimeout(() => {
             console.log('%cFrieza: You\'ll pay, damn Saiyan!', this.Villain_MSG_Format);
         }, 1000);
@@ -447,8 +447,9 @@ class Hero {
         if(this.Hero_Alive){
             this.hero_speak(this.Hero_Basic_Sounds[1]);
             this.Hero_Alive = false;
+            this.Hero_Can_Move = false;
             this.Hero_move_Y = 4; // Sprite death
-            console.log('%cVegeta: Avenge me, Kakarot!!!', this.Hero_MSG_Format);
+            console.log('%cVegita: Avenge me, Kakarot!!!', this.Hero_MSG_Format);
             setTimeout(() => {
                 this.set_default_position();
             }, 7000);
@@ -494,10 +495,10 @@ class Hero {
         if (game_object == BALL) {
             this.Hero_KEY = true;
             scenary[this.Hero_y][this.Hero_x] = 2;
-            console.log('%cVegeta: Finally i have the 1 Star Dragon Ball!!', this.Hero_MSG_Format);
+            console.log('%cSuper Vegita: Finally i have the 1 Star Dragon Ball!!', this.Hero_SMSG_Format);
             setTimeout( () => {
                     this.hero_speak(this.Hero_Basic_Sounds[4]);
-                    console.log("%cFrieza: Catch Vegeta, don't let him escape!!", this.Villain_MSG_Format);
+                    console.log("%cFrieza: Catch Vegita, don't let him escape!!", this.Villain_MSG_Format);
                 }, 2600);
             this.hero_speak(this.Hero_Basic_Sounds[0]); // Catch the Dball
         }
@@ -507,7 +508,7 @@ class Hero {
             if (this.Hero_KEY) {
                 this.victory();
             } else {
-                console.log('%cVegeta: We can\'t leave this place without the Dragon Ball, insect!', this.Hero_MSG_Format);
+                console.log('%cSuper Vegita: We can\'t leave this place without the Dragon Ball, insect!', this.Hero_SMSG_Format);
                 this.hero_speak(this.Hero_Basic_Sounds[2]);
             }
         }

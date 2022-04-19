@@ -40,6 +40,7 @@ const KEY_LEFT = 65;
 const KEY_RIGHT = 68;
 const KEY_SPEAK = 69;
 const HERO_MSG_FORMAT = 'color: #FFF; background-color: blue; font-size: 10px; border: 2px solid white; border-radius: 10px; pading: 5px 10px;';
+const BASIC_MSG_FORMAT = 'color: #FFF; background-color: black; font-size: 10px; border: 2px solid red; border-radius: 10px; pading: 5px 10px;';
 
 /**
  * Draws the background of the game
@@ -105,8 +106,11 @@ const Hero_Game_Action = (key_pressed, avatar) => {
       avatar.go_rigth();
       break;
     case KEY_SPEAK:
-      avatar.hero_random_speak();
-  }
+      if(avatar.Hero_Can_Move) {
+       avatar.hero_random_speak();  
+     }
+     break;
+    }
 }
 
 /**
@@ -153,7 +157,8 @@ const dungeon_game_init = () => {
  * Event listener for Load.
  */
  window.addEventListener("load", () => {
-  console.log('%cStart Mision:\nVegeta: Frieza has 5 dragon balls, now i\'m going to search for the missing one!', HERO_MSG_FORMAT);
+  console.log('%cStart Mision:', BASIC_MSG_FORMAT);
+  console.log('%cVegita: Frieza has 5 dragon balls, now i\'m going to search for the missing one!', HERO_MSG_FORMAT);
   dungeon_game_init();
 });
 
