@@ -119,21 +119,21 @@ const dungeon_game_init = () => {
   var tileMap = new Image();
   tileMap.src = '../assets/Games/Dungeon/img/tilemap_dbz_namek.png';
   var hero_tile = new Image();
-  hero_tile.src = '../assets/Games/Dungeon/img/tilemap_hero.png';
+  hero_tile.src = '../assets/Games/Dungeon/img/tilemap_hero_t.png';
 
   //* Player
   const avatar = new Hero();
   //* Enemy
   const enemy = [];
   //* Create 4 enemies
-  enemy.push(new Enemy(2, 6));
+  enemy.push(new Enemy(1, 8));
   enemy.push(new Enemy(7, 6));
   enemy.push(new Enemy(10, 8));
   enemy.push(new Enemy(12, 3));
 
   music_play();
   setTimeout( () => {
-    avatar.hero_init_phrase();
+    avatar.first_game_position();
   }, 1000);
 
   //* Create the torch

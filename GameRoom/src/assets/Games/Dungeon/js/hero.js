@@ -34,16 +34,19 @@ class Hero {
     _x;
     _y;
     _KEY;
-    _move_X = 0;
-    _move_Y = 1;
-    _is_alive = true;
+    _move_X;
+    _move_Y;
+    _is_alive;
+    _can_move;
     _hero_basic_sound = [
         'dball_found',
         'defeat',
         'error',
         'victory',
         'enemy_rage',
-        'game_init'
+        'game_init',
+        'game_init_1',
+        'scream_transform'
     ];
 
     _hero_phrasings = [
@@ -64,6 +67,7 @@ class Hero {
         'with_me'
     ];
     _HERO_MSG_FORMAT = 'color: #FFF; background-color: blue; font-size: 10px; border: 2px solid white; border-radius: 10px; pading: 5px 10px;';
+    _SUPER_HERO_MSG_FORMAT = 'color: black; background-color: yellow; font-size: 10px; border: 2px solid white; border-radius: 10px; pading: 5px 10px;';
     _VILLAIN_MSG_FORMAT = 'color: #FFF; background-color: purple; font-size: 10px; border: 2px solid white; border-radius: 10px; pading: 5px 10px;';
 
 
@@ -75,6 +79,10 @@ class Hero {
     constructor(x = 1, y = 1) {
         this.Hero_x = x;
         this.Hero_y = y;
+        this.Hero_Alive = true;
+        this.Hero_Can_Move = false;
+        this.Hero_move_X = 0;
+        this.Hero_move_Y = 5;
     }
 
     //* ###### Properties: Getters ######
@@ -116,6 +124,13 @@ class Hero {
     }
 
     /**
+     * Gets the status if the hero can make a move.
+     */
+    get Hero_Can_Move(){
+        return this._can_move;
+    }
+
+    /**
      * Gets True if the hero is on the same position as the key, otherwise False.
      * 
      * @returns {boolean} The key.
@@ -150,6 +165,13 @@ class Hero {
      */
     get Hero_MSG_Format() {
         return this._HERO_MSG_FORMAT;
+    }
+
+    /**
+     * Gets the color format of the Hero's message while it's super.
+     */
+    get Hero_SMSG_Format(){
+        return this._SUPER_HERO_MSG_FORMAT;
     }
 
     /**
@@ -195,6 +217,15 @@ class Hero {
      */
     set Hero_move_Y(value) {
         this._move_Y = value;
+    }
+
+    /**
+     * Sets the status if the hero can make a move.
+     * 
+     * @param {boolean} value - The new status.
+     */
+    set Hero_Can_Move(value){
+        this._can_move = value;
     }
 
     /**
@@ -251,7 +282,7 @@ class Hero {
      * Checks the movement of the sprite.
      */
     check_movement = () => {
-        if (this.Hero_move_X < 3) {
+        if (this.Hero_Can_Move && this.Hero_move_X < 3) {
             this.Hero_move_X++;
         } else {
             this.Hero_move_X = 0;
@@ -262,7 +293,7 @@ class Hero {
      * If the hero isn't on the margins, the hero moves up.
      */
     go_up = () => {
-        if(this.Hero_Alive){
+        if(this.Hero_Alive && this.Hero_Can_Move){
             if (!this.margins(this.Hero_x, this.Hero_y - 1)) {
                 this.Hero_y--;
                 this.Hero_move_Y = 0;
@@ -276,7 +307,7 @@ class Hero {
      * If the hero isn't on the margins, the hero moves down.
      */
     go_down = () => {
-        if(this.Hero_Alive){
+        if(this.Hero_Alive && this.Hero_Can_Move){
             if (!this.margins(this.Hero_x, this.Hero_y + 1)) {
                 this.Hero_y++;
                 this.Hero_move_Y = 1;
@@ -290,7 +321,7 @@ class Hero {
      * If the hero isn't on the margins, the hero moves left.
      */
     go_left = () => {
-        if(this.Hero_Alive){
+        if(this.Hero_Alive && this.Hero_Can_Move){
             if (!this.margins(this.Hero_x - 1, this.Hero_y)) {
                 this.Hero_x--;
                 this.Hero_move_Y = 2;
@@ -304,7 +335,7 @@ class Hero {
      * If the hero isn't on the margins, the hero moves right.
      */
     go_rigth = () => {
-        if(this.Hero_Alive){
+        if(this.Hero_Alive && this.Hero_Can_Move){
             if (!this.margins(this.Hero_x + 1, this.Hero_y)) {
                 this.Hero_x++;
                 this.Hero_move_Y = 3;
@@ -317,15 +348,84 @@ class Hero {
     /**
      * Sets the hero in the initial position.
      */
-    set_default_position = () => {
+     first_game_position = () => {
+        this.revive();
+        this.Hero_move_Y = 5;
         this.Hero_x = 1;
         this.Hero_y = 1;
-        this.Hero_move_Y = 1;
-        if(!this.Hero_Alive){
-            this.Hero_Alive = true;
-        }
+        setTimeout(() => {
+            setTimeout(() => {
+                this.Hero_move_Y = 1;
+                this.Hero_move_X = 0;
+            }, 2000);
+            this.transform_animation();
+            this.Hero_Can_Move = true;
+        }, 6800);
+        this.hero_init_phrase(); // init wait 6.9 sec
         this.Hero_KEY = false;   // The player doesn't have the key.
         scenary[8][3] = 3;  // The key is in the initial position.
+    }
+
+    /**
+     * Sets the hero in the initial position.
+     */
+    set_default_position = () => {
+        this.revive();
+        this.Hero_x = 1;
+        this.Hero_y = 1;
+        setTimeout(() => {
+            this.Hero_move_Y = 1;
+            this.Hero_move_X = 0;
+            this.Hero_Can_Move = true;
+        }, 2000);
+        this.transform_animation();
+        this.Hero_KEY = false;   // The player doesn't have the key.
+        scenary[8][3] = 3;  // The key is in the initial position.
+    }
+
+    /**
+     * Sets the hero the status Alive in true and Can_Move in false.
+     */
+    revive = () => {
+        if(!this.Hero_Alive){
+            this.Hero_Alive = true;
+            this.Hero_Can_Move = false;
+        }
+    }
+
+    /**
+     * Makes a partial animation for the transformation of the hero.
+     * @param {number} index_Y 
+     */
+    transform_Y = (index_Y) => {
+        this.Hero_move_X = 0;
+        this.Hero_move_Y = index_Y;
+        setInterval(() => {
+            if(this.Hero_Alive && this.Hero_move_X < 3){
+                this.Hero_move_X ++;
+            }
+        }, 500);
+    }
+
+    /**
+     * Makes a full animation for the transformation of the hero, also plays a sound
+     * for the transformation and prints a message in console.
+     */
+    transform_animation = () => {
+        this.Hero_move_Y = 5;
+        this.Hero_move_X = 0;
+        setTimeout(() => {
+            setTimeout(() => {
+                this.transform_Y(6);
+                clearInterval(this.transform_Y);
+                this.Hero_move_X = 0;
+                this.Hero_move_Y = 1;
+            } , 2000);
+            console.log("%cI\'m Super Vegeta!!!", this.Hero_SMSG_Format);
+            this.transform_Y(5);
+        }, 250);
+        this.hero_speak(this.Hero_Basic_Sounds[7]); // scream wait 4 sec
+        clearInterval(this.transform_Y);
     }
 
     /**
@@ -359,7 +459,7 @@ class Hero {
      * Plays the initial phrase of the hero in the game.
      */
     hero_init_phrase = () => {
-        this.hero_speak(this.Hero_Basic_Sounds[5]);
+        this.hero_speak(this.Hero_Basic_Sounds[6]);
     }
 
     /**
