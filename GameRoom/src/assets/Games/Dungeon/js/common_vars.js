@@ -29,7 +29,7 @@
 
 import './howler.core.js'
 
-const FPS = 50;
+const FPS = 55;
 const width_F = 50;
 const height_F = 50;
 const width_H = 50;

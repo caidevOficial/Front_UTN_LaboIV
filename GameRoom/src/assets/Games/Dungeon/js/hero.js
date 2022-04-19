@@ -89,7 +89,6 @@ class Hero {
 
     /**
      * Gets the hero X position.
-     * 
      * @returns {number} The X position.
      */
     get Hero_x() {
@@ -98,7 +97,6 @@ class Hero {
 
     /**
      * Gets the hero Y position.
-     * 
      * @returns {number} The Y position.
      */
     get Hero_y() {
@@ -107,7 +105,6 @@ class Hero {
 
     /**
      * Gets the sprite of the hero [Axis X].
-     * 
      * @returns {number} The sprite of the hero [Axis X].
      */
     get Hero_move_X() {
@@ -116,7 +113,6 @@ class Hero {
 
     /**
      * Gets the sprite of the hero [Axis Y].
-     * 
      * @returns {number} The sprite of the hero [Axis Y].
      */
     get Hero_move_Y() {
@@ -125,6 +121,7 @@ class Hero {
 
     /**
      * Gets the status if the hero can make a move.
+     * @returns {boolean} True if the hero can make a move.
      */
     get Hero_Can_Move(){
         return this._can_move;
@@ -132,7 +129,6 @@ class Hero {
 
     /**
      * Gets True if the hero is on the same position as the key, otherwise False.
-     * 
      * @returns {boolean} The key.
      */
     get Hero_KEY() {
@@ -141,6 +137,7 @@ class Hero {
 
     /**
      * Gets the list of sounds for the hero.
+     * @returns {Array} The list of sounds for the hero.
      */
     get Hero_Phrases() {
         return this._hero_phrasings;
@@ -148,6 +145,7 @@ class Hero {
 
     /**
      * Gets the basic sound for the hero.
+     * @returns {Array} The basic sound for the hero.
      */
     get Hero_Basic_Sounds() {
         return this._hero_basic_sound;
@@ -155,6 +153,7 @@ class Hero {
 
     /**
      * Gets the status of the hero for 'Alive' or 'Dead'.
+     * @returns {boolean} True if the hero is alive.
      */
     get Hero_Alive() {
         return this._is_alive;
@@ -162,6 +161,7 @@ class Hero {
 
     /**
      * Gets the color format of the Hero's message.
+     * @returns {string} The color format of the Hero's message as a base format.
      */
     get Hero_MSG_Format() {
         return this._HERO_MSG_FORMAT;
@@ -169,6 +169,7 @@ class Hero {
 
     /**
      * Gets the color format of the Hero's message while it's super.
+     * @returns {string} The color format of the Hero's message as a super format.
      */
     get Hero_SMSG_Format(){
         return this._SUPER_HERO_MSG_FORMAT;
@@ -176,6 +177,7 @@ class Hero {
 
     /**
      * Gets the color format of the villains' message.
+     * @returns {string} The color format of the villains' message as a base format.
      */
     get Villain_MSG_Format() {
         return this._VILLAIN_MSG_FORMAT;
@@ -203,7 +205,6 @@ class Hero {
 
     /**
      * Sets the Axis X for the sprite animation.
-     * 
      * @param {number} value - The new X position.
      */
     set Hero_move_X(value) {
@@ -212,7 +213,6 @@ class Hero {
 
     /**
      * Sets the Axis Y for the sprite animation.
-     * 
      * @param {number} value - The new Y position.
      */
     set Hero_move_Y(value) {
@@ -221,7 +221,6 @@ class Hero {
 
     /**
      * Sets the status if the hero can make a move.
-     * 
      * @param {boolean} value - The new status.
      */
     set Hero_Can_Move(value){
@@ -230,7 +229,6 @@ class Hero {
 
     /**
      * Sets True if the hero is on the same position as the key, otherwise False.
-     * 
      * @param {boolean} key - The new key.
      */
     set Hero_KEY(value) {
@@ -239,6 +237,7 @@ class Hero {
 
     /**
      * Sets the status of the hero for 'Alive' or 'Dead'.
+     * @param {boolean} value - The new status.
      */
     set Hero_Alive(value) {
         this._is_alive = value;
@@ -246,6 +245,11 @@ class Hero {
 
     /**
      * Draws the hero.
+     * @param {CanvasRenderingContext2D} ctx - The canvas context.
+     * @param {HTMLImageElement} tileMap - The X position.
+     * @param {number} width_H - The width max of the cell where the hero is.
+     * @param {number} height_H - The height max of the cell where the hero is.
+     * 
      */
     draw = (ctx, tileMap, width_H, height_H) => {
         ctx.drawImage(tileMap,
@@ -350,13 +354,13 @@ class Hero {
      */
      first_game_position = () => {
         this.revive();
-        this.Hero_move_Y = 5;
         this.Hero_x = 1;
         this.Hero_y = 1;
         setTimeout(() => {
             setTimeout(() => {
                 this.Hero_move_Y = 1;
                 this.Hero_move_X = 0;
+                this.go_down();
             }, 2000);
             this.transform_animation();
             this.Hero_Can_Move = true;
@@ -412,8 +416,6 @@ class Hero {
      * for the transformation and prints a message in console.
      */
     transform_animation = () => {
-        this.Hero_move_Y = 5;
-        this.Hero_move_X = 0;
         setTimeout(() => {
             setTimeout(() => {
                 this.transform_Y(6);
@@ -431,7 +433,7 @@ class Hero {
     /**
      * Plays a victory sound and sets the hero in the initial position.
      */
-    victory = (FORMAT) => {
+    victory = () => {
         this.hero_speak(this.Hero_Basic_Sounds[3]);
         console.log('%cSuper Vegita: Finally i\'ll be immortal and the universe emperor!!', this.Hero_SMSG_Format);
         setTimeout(() => {
@@ -465,7 +467,7 @@ class Hero {
 
     /**
      * Plays a specific sound of the player.
-     * @param {string} phrase 
+     * @param {string} phrase The name of the audio to be played.
      */
     hero_speak = (phrase) => {
         if(this.Hero_Alive){

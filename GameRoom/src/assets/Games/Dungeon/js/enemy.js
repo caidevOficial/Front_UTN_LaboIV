@@ -222,44 +222,29 @@ class Enemy {
             this.Enemy_counter = 0;
 
             //* ######## UP ########
-            if (this.Enemy_direction == 0) {
-                if (!this.check_collision(this.Enemy_x, this.Enemy_y - 1)) {
-                    this.Enemy_y--;
-                }
-                else {
-                    this.Enemy_direction = Math.floor(Math.random() * 4);
-                }
+            if (this.Enemy_direction == 0 && !this.check_collision(this.Enemy_x, this.Enemy_y - 1)) {
+                this.Enemy_y--;
             }
 
-
             //* ######## DOWN ########
-            else if (this.Enemy_direction == 1) {
-                if (!this.check_collision(this.Enemy_x, this.Enemy_y + 1)) {
-                    this.Enemy_y++;
-                }
-                else {
-                    this.Enemy_direction = Math.floor(Math.random() * 4);
-                }
+            else if (this.Enemy_direction == 1 && !this.check_collision(this.Enemy_x, this.Enemy_y + 1)) {
+                this.Enemy_y++;
             }
 
             //* ######## LEFT ########
-            else if (this.Enemy_direction == 2) {
-                if (!this.check_collision(this.Enemy_x - 1, this.Enemy_y)) {
+            else if (this.Enemy_direction == 2 && !this.check_collision(this.Enemy_x - 1, this.Enemy_y)) {
+                if(this.Enemy_x == 2 && this.Enemy_y == 1) {
+                    this.Enemy_y++;
+                }else{
                     this.Enemy_x--;
-                }
-                else {
-                    this.Enemy_direction = Math.floor(Math.random() * 4);
                 }
             }
 
             //* ######## RIGHT ########
-            else if (this.Enemy_direction == 3) {
-                if (!this.check_collision(this.Enemy_x + 1, this.Enemy_y)) {
-                    this.Enemy_x++;
-                }
-                else {
-                    this.Enemy_direction = Math.floor(Math.random() * 4);
-                }
+            else if (this.Enemy_direction == 3 && !this.check_collision(this.Enemy_x + 1, this.Enemy_y)) {
+                this.Enemy_x++;
+            }else {
+                this.Enemy_direction = Math.floor(Math.random() * 4);
             }
         }
     }
