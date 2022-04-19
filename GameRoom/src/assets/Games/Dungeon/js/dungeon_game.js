@@ -126,10 +126,10 @@ const dungeon_game_init = () => {
   //* Enemy
   const enemy = [];
   //* Create 4 enemies
-  enemy.push(new Enemy(3, 3));
-  enemy.push(new Enemy(5, 7));
-  enemy.push(new Enemy(7, 7));
-  enemy.push(new Enemy(9, 7));
+  enemy.push(new Enemy(2, 6));
+  enemy.push(new Enemy(7, 6));
+  enemy.push(new Enemy(10, 8));
+  enemy.push(new Enemy(12, 3));
 
   music_play();
   setTimeout( () => {
