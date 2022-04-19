@@ -30,7 +30,8 @@ export class LoadScriptsService {
     const script = document.createElement('script');
     script.src = `./assets/Games/${file}.js`;
     script.type = type;
-    defer ? script.defer = true : script.defer = false;
+    script.setAttribute('defer', '');
+    defer ? script.setAttribute('defer', '') : script.defer = false;
     document.getElementsByTagName('head')[0].appendChild(script);
   }
 
@@ -88,13 +89,11 @@ export class LoadScriptsService {
   }
 
   append_background = (b_url: string, id: string) => {
-    const canvas_div = document.getElementById(id);
-    if(canvas_div){
-      const image = document.createElement('img')
-      image.src = b_url;
-      image.width = 750;
-      image.height = 500;
-      canvas_div.appendChild(image);
+    const canvas_div = document.getElementById(`${id}`);
+    if(canvas_div != null) {
+      canvas_div.setAttribute('style', `background: url(${b_url}) no-repeat center local; background-size: cover; align-content:stretch; overflow:hidden; object-fit: cover;`);
+    }else{
+      console.log(`Could not find element with id: ${id}`);
     }
   }
 }

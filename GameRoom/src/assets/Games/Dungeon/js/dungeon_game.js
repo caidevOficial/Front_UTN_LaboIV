@@ -39,7 +39,12 @@ const KEY_DOWN = 83;
 const KEY_LEFT = 65;
 const KEY_RIGHT = 68;
 const KEY_SPEAK = 69;
+const HERO_MSG_FORMAT = 'color: #FFF; background-color: blue; font-size: 10px; border: 2px solid white; border-radius: 10px; pading: 5px 10px;';
 
+/**
+ * Draws the background of the game
+ * @param {HTMLImageElement} tileMap Is the image element of the tilemap [background of the game.] 
+ */
 const draw_scenary = (tileMap) => {
   for (var y = 0; y < 10; y++) {
     for (var x = 0; x < 15; x++) {
@@ -52,11 +57,22 @@ const draw_scenary = (tileMap) => {
   }
 }
 
+/**
+ * Creates a new canvas element and deletes the old one.
+ */
 const delete_canvas = () => {
   canvas.width = 750;
   canvas.height = 500;
 }
 
+/**
+ * Draws the background, the hero, the enemies and the torch.
+ * @param {HTMLImageElement} hero_tile Is the image element of the hero.
+ * @param {HTMLImageElement} tileMap Is the image element of the tilemap [background of the game.]
+ * @param {HTMLImageElement} torch_img Is the image element of the torch.
+ * @param {Hero} avatar Is the hero object.
+ * @param {Enemy} enemy Is the enemy object.
+ */
 const principal = (hero_tile, tileMap, torch_img, avatar, enemy) => {
   delete_canvas();
   draw_scenary(tileMap);
@@ -69,6 +85,33 @@ const principal = (hero_tile, tileMap, torch_img, avatar, enemy) => {
   });
 }
 
+/**
+ * Make actions bassed on the key pressed.
+ * @param {KeyboardEvent} key_pressed Is the key pressed.
+ * @param {Hero} avatar Is the hero object.
+ */
+const Hero_Game_Action = (key_pressed, avatar) => {
+  switch (key_pressed.keyCode) {
+    case KEY_UP:
+      avatar.go_up();
+      break;
+    case KEY_DOWN:
+      avatar.go_down();
+      break;
+    case KEY_LEFT:
+      avatar.go_left();
+      break;
+    case KEY_RIGHT:
+      avatar.go_rigth();
+      break;
+    case KEY_SPEAK:
+      avatar.hero_random_speak();
+  }
+}
+
+/**
+ * Initializes the game.
+ */
 const dungeon_game_init = () => {
   canvas = document.getElementById('canvas');
   ctx = canvas.getContext('2d');
@@ -80,7 +123,7 @@ const dungeon_game_init = () => {
 
   //* Player
   const avatar = new Hero();
-
+  //* Enemy
   const enemy = [];
   //* Create 4 enemies
   enemy.push(new Enemy(3, 3));
@@ -98,23 +141,7 @@ const dungeon_game_init = () => {
 
   //* Keyboard events
   document.addEventListener('keydown', (key_pressed) => {
-    switch (key_pressed.keyCode) {
-      case KEY_UP:
-        avatar.go_up();
-        break;
-      case KEY_DOWN:
-        avatar.go_down();
-        break;
-      case KEY_LEFT:
-        avatar.go_left();
-        break;
-      case KEY_RIGHT:
-        avatar.go_rigth();
-        break;
-      case KEY_SPEAK:
-        avatar.hero_random_speak();
-    }
-
+    Hero_Game_Action(key_pressed, avatar);
   });
 
   setInterval(() => {
@@ -126,7 +153,7 @@ const dungeon_game_init = () => {
  * Event listener for Load.
  */
  window.addEventListener("load", () => {
-  console.log('Start Mision:\nVegeta: Frieza has 5 dragon balls, now i\'m going to search for the missing one!');
+  console.log('%cStart Mision:\nVegeta: Frieza has 5 dragon balls, now i\'m going to search for the missing one!', HERO_MSG_FORMAT);
   dungeon_game_init();
 });
 

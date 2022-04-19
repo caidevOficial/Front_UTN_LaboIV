@@ -15,7 +15,11 @@ const backGrounds = [
   "./assets/Games/Dungeon/background/BG_11.png",
   "./assets/Games/Dungeon/background/BG_12.png",
   "./assets/Games/Dungeon/background/BG_13.png",
-  "./assets/Games/Dungeon/background/BG_14.png"
+  "./assets/Games/Dungeon/background/BG_14.png",
+  "./assets/Games/Dungeon/background/BG_15.png",
+  "./assets/Games/Dungeon/background/BG_16.png",
+  "./assets/Games/Dungeon/background/BG_17.png",
+  "./assets/Games/Dungeon/background/BG_18.png"
 ]
 
 @Component({
@@ -26,7 +30,7 @@ const backGrounds = [
 export class DungeonComponent implements OnInit {
 
   constructor(private _load_scripts: LoadScriptsService) {
-    // this.select_bg(backGrounds);
+    
     this._load_scripts.load_game([
       'Dungeon/js/howler.core'
     ]);
@@ -45,11 +49,11 @@ export class DungeonComponent implements OnInit {
 
   select_bg = (backs:string[]) => {
     let index = ~~(Math.random() * backs.length);
-    this._load_scripts.append_background(backs[index], 'dbz');
+    this._load_scripts.append_background(backs[index], 'img-container');
   }
 
   ngOnInit(): void {
-    //this.select_bg(backGrounds);
+    this.select_bg(backGrounds);
   }
 
 }
