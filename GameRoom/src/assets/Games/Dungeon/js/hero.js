@@ -360,10 +360,10 @@ class Hero {
             setTimeout(() => {
                 this.Hero_move_Y = 1;
                 this.Hero_move_X = 0;
+                this.Hero_Can_Move = true;
                 this.go_down();
             }, 2000);
             this.transform_animation();
-            this.Hero_Can_Move = true;
         }, 6800);
         this.hero_init_phrase(); // init wait 6.9 sec
         this.Hero_KEY = false;   // The player doesn't have the key.
@@ -381,7 +381,7 @@ class Hero {
             this.Hero_move_Y = 1;
             this.Hero_move_X = 0;
             this.Hero_Can_Move = true;
-        }, 2000);
+        }, 3000);
         this.transform_animation();
         this.Hero_KEY = false;   // The player doesn't have the key.
         scenary[8][3] = 3;  // The key is in the initial position.
