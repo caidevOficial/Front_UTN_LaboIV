@@ -68,12 +68,13 @@ const delete_canvas = () => {
 /**
  * Draws the background, the hero, the enemies and the torch.
  * @param {HTMLImageElement} hero_tileMap Is the image element of the hero.
+ * @param {HTMLImageElement} enemy_tileMap Is the image element of the enemy.
  * @param {HTMLImageElement} canvas_tileMap Is the image element of the canvas_tileMap [background of the game.]
  * @param {HTMLImageElement} torch_img Is the image element of the torch.
  * @param {Hero} avatar Is the hero object.
  * @param {Enemy} enemy Is the enemy object.
  */
-const principal = (hero_tileMap, canvas_tileMap, torch_img, avatar, enemy) => {
+const principal = (hero_tileMap, enemy_tileMap, canvas_tileMap, torch_img, avatar, enemy) => {
   delete_canvas();
   draw_scenary(canvas_tileMap);
   torch_img.draw(ctx, canvas_tileMap, width_H, height_H);
@@ -81,7 +82,7 @@ const principal = (hero_tileMap, canvas_tileMap, torch_img, avatar, enemy) => {
 
   enemy.forEach((e) => {
     e.move(avatar);
-    e.draw(ctx, canvas_tileMap, width_F, height_F);
+    e.draw(ctx, enemy_tileMap, width_F, height_F);
   });
 }
 
@@ -123,6 +124,8 @@ const dungeon_game_init = () => {
   canvas_tileMap.src = '../assets/Games/Dungeon/img/tilemap_dbz_namek.png';
   var hero_tile = new Image();
   hero_tile.src = '../assets/Games/Dungeon/img/tilemap_hero_t.png';
+  var enemy_tile = new Image();
+  enemy_tile.src = '../assets/Games/Dungeon/img/tilemap_enemy.png';
 
   //* Player
   const avatar = new Hero();
@@ -148,7 +151,7 @@ const dungeon_game_init = () => {
   });
 
   setInterval(() => {
-    principal(hero_tile, canvas_tileMap, torch_img, avatar, enemy);
+    principal(hero_tile, enemy_tile, canvas_tileMap, torch_img, avatar, enemy);
   }, 1000 / FPS);
 }
 

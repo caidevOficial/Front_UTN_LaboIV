@@ -468,7 +468,7 @@ class Hero {
             if (this.Hero_Alive && this.Hero_move_X < 3) {
                 this.Hero_move_X++;
             }
-            console.log(`Index Y: ${index_Y} | Index X: ${this.Hero_move_X}`);
+            //console.log(`Index Y: ${index_Y} | Index X: ${this.Hero_move_X}`);
             if (this.Hero_move_X == 3) {
                 clearInterval(interval);
             }
