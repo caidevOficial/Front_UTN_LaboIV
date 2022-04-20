@@ -129,6 +129,18 @@ const music_play = () => {
 }
 
 /**
+ * Plays a specific sound of the player.
+ * @param {string} phrase The name of the audio to be played.
+ */
+ const speak = (phrase) => {
+    let do_speak = new Howl({
+        src: [`../assets/Games/Dungeon/sound/${phrase}.ogg`],
+        loop: false
+    });
+    do_speak.play();
+}
+
+/**
  * Array of the game's map for Walls, the Door, the object and the Land.
  */
 var scenary = [
@@ -151,6 +163,7 @@ export {
     width_H,
     height_H,
     music_play,
+    speak,
     scenary,
     BALL,
     DOOR,

@@ -28,6 +28,7 @@
  */
 
 import { scenary, BALL, DOOR, 
+    speak,
     _hero_basic_sound, 
     _hero_defeat_sound, 
     _hero_phrasings,
@@ -399,7 +400,6 @@ class Hero {
      */
      victory = () => {
         this.hero_random_speak('enemy_phrases/', _enemy_rage);
-        this.hero_speak(this.Hero_Basic_Sounds[2]);
         console.log('%cSuper Vegita: Finally i\'ll be immortal and the universe emperor!!', this.Hero_SMSG_Format);
         this.Hero_Can_Move = false;
         setTimeout(() => {
@@ -490,26 +490,22 @@ class Hero {
     }
 
     /**
-     * Plays a specific sound of the player.
-     * @param {string} phrase The name of the audio to be played.
-     */
-    hero_speak = (phrase) => {
-        if(this.Hero_Alive){
-            let hero_speak = new Howl({
-                src: [`../assets/Games/Dungeon/sound/${phrase}.ogg`],
-                loop: false
-            });
-            hero_speak.play();
-        }
-    }
-
-    /**
      * Plays a random sound of the player from a list of sounds.
      * @param {list} list List of audio files to be played randomly.
      */
     hero_random_speak = (directory = '', sound_list) => {
         let phrase = this.random_sound_from_list(sound_list);
         this.hero_speak(`${directory}${phrase}`);
+    }
+
+    /**
+     * Plays a specific sound of the player.
+     * @param {string} phrase The name of the audio to be played.
+     */
+    hero_speak = (phrase) => {
+        if(this.Hero_Alive){
+            speak(`${phrase}`);
+        }
     }
 
     //* ###### Key Methods ######
@@ -529,7 +525,7 @@ class Hero {
                     this.hero_speak(this.Hero_Basic_Sounds[3]);
                     console.log("%cFrieza: Catch Vegita, don't let him escape!!", this.Villain_MSG_Format);
                 }, 2600);
-            this.hero_speak(this.Hero_Basic_Sounds[0]); // Catch the Dball
+                this.hero_speak(this.Hero_Basic_Sounds[0]); // Catch the Dball
         }
 
         //? In the stairs
