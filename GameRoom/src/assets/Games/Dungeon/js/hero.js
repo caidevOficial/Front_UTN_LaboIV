@@ -437,9 +437,13 @@ class Hero {
         this.hero_speak(this.Hero_Basic_Sounds[3]);
         console.log('%cSuper Vegita: Finally i\'ll be immortal and the universe emperor!!', this.Hero_SMSG_Format);
         setTimeout(() => {
+            setTimeout(() => {
+                this.set_default_position();
+            }, 5280);
             console.log('%cFrieza: You\'ll pay, damn Saiyan!', this.Villain_MSG_Format);
+            this.Hero_Can_Move = false;
         }, 1000);
-        this.set_default_position();
+        
     }
 
     /**
