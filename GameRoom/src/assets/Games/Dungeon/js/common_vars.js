@@ -38,11 +38,82 @@ const WALL = 0;
 const LAND = 2;
 const DOOR = 1;
 const BALL = 3;
+const _hero_defeat_sound = [
+    'defeat_01',
+    'defeat_02'
+]
+
+const _hero_basic_sound = [
+    'dball_found',
+    'error',
+    'victory',
+    'enemy_rage',
+    'game_init_01',
+    'game_init_02',
+    'scream_transform'
+];
+
+const _hero_phrasings = [
+    'balloon',
+    'defeat_after_frieza',
+    'demeaning',
+    'dont_talkme',
+    'ears',
+    'heartless_sound',
+    'idiot',
+    'idiot_full',
+    'if_i_train_harder',
+    'insect',
+    'power_is_all',
+    'saiyajin_warrior',
+    'this_fight_is_not',
+    'what_did_u_said',
+    'with_me',
+    'stop_game'
+];
+
+const _enemy_init_phrase = [
+    'init_frieza'
+];
+
+const _enemy_provoke = [
+    'provoke_01',
+    'provoke_02',
+    'provoke_03',
+    'provoke_04',
+    'provoke_05',
+    'provoke_06',
+    'provoke_07',
+    'provoke_08',
+    'provoke_09',
+    'provoke_10',
+    'provoke_11',
+    'provoke_12',
+    'provoke_13'
+];
+
+const _enemy_defeat_hero_phrasing = [
+    'provoke_death_01',
+    'provoke_death_02',
+    'provoke_death_03',
+    'provoke_death_04',
+    'provoke_death_05'
+];
+
+const _enemy_rage = [
+    'rage_01',
+    'rage_02'
+];
 
 const music_themes = [
     "battle_theme",
     "vegeta_theme"
 ];
+
+const _BASIC_MSG_FORMAT = 'color: #FFF; background-color: black; font-size: 10px; border: 2px solid red; border-radius: 10px; pading: 5px 10px;';
+const _HERO_MSG_FORMAT = 'color: #FFF; background-color: blue; font-size: 10px; border: 2px solid white; border-radius: 10px; pading: 5px 10px;';
+const _SUPER_HERO_MSG_FORMAT = 'color: black; background-color: yellow; font-size: 10px; border: 2px solid blue; border-radius: 10px; pading: 5px 10px;';
+const _VILLAIN_MSG_FORMAT = 'color: #FFF; background-color: purple; font-size: 10px; border: 2px solid white; border-radius: 10px; pading: 5px 10px;';
 
 /**
  * Plays a random music theme from the music_themes array.
@@ -84,5 +155,16 @@ export {
     BALL,
     DOOR,
     LAND,
-    WALL
+    WALL,
+    _hero_basic_sound,
+    _hero_defeat_sound,
+    _hero_phrasings,
+    _enemy_init_phrase,
+    _enemy_provoke,
+    _enemy_defeat_hero_phrasing,
+    _enemy_rage,
+    _BASIC_MSG_FORMAT,
+    _HERO_MSG_FORMAT,
+    _SUPER_HERO_MSG_FORMAT,
+    _VILLAIN_MSG_FORMAT
 }

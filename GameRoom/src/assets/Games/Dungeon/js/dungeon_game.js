@@ -29,7 +29,7 @@
 
 import { Enemy } from './enemy.js';
 import { Torch } from './torch.js';
-import { FPS, height_F, width_F, width_H, height_H, music_play, scenary } from './common_vars.js';
+import { FPS, height_F, width_F, width_H, height_H, music_play, scenary, _HERO_MSG_FORMAT, _BASIC_MSG_FORMAT } from './common_vars.js';
 import { Hero } from './hero.js';
 
 var canvas;
@@ -39,8 +39,7 @@ const KEY_DOWN = 83;
 const KEY_LEFT = 65;
 const KEY_RIGHT = 68;
 const KEY_SPEAK = 69;
-const HERO_MSG_FORMAT = 'color: #FFF; background-color: blue; font-size: 10px; border: 2px solid white; border-radius: 10px; pading: 5px 10px;';
-const BASIC_MSG_FORMAT = 'color: #FFF; background-color: black; font-size: 10px; border: 2px solid red; border-radius: 10px; pading: 5px 10px;';
+
 
 /**
  * Draws the background of the game
@@ -107,7 +106,7 @@ const Hero_Game_Action = (key_pressed, avatar) => {
       break;
     case KEY_SPEAK:
       if(avatar.Hero_Can_Move) {
-       avatar.hero_random_speak('phrases/', avatar.Hero_Phrases);  
+       avatar.hero_random_speak('hero_phrases/', avatar.Hero_Phrases);  
      }
      break;
     }
@@ -157,8 +156,8 @@ const dungeon_game_init = () => {
  * Event listener for Load.
  */
  window.addEventListener("load", () => {
-  console.log('%cStart Mision:', BASIC_MSG_FORMAT);
-  console.log('%cVegita: Frieza has 5 dragon balls, now i\'m going to search for the missing one!', HERO_MSG_FORMAT);
+  console.log('%cStart Mision:', _BASIC_MSG_FORMAT);
+  console.log('%cVegita: Frieza has 5 dragon balls, now i\'m going to search for the missing one!', _HERO_MSG_FORMAT);
   dungeon_game_init();
 });
 
