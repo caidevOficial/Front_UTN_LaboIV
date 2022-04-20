@@ -140,6 +140,16 @@ const music_play = () => {
     do_speak.play();
 }
 
+const sleep = (milliseconds) => {
+    let start = new Date().getTime();
+    for (let i = 0; i < 1e7; i++) {
+        if ((new Date().getTime() - start) > milliseconds) {
+            break;
+        }
+    }
+}
+
+
 /**
  * Array of the game's map for Walls, the Door, the object and the Land.
  */
@@ -164,6 +174,7 @@ export {
     height_H,
     music_play,
     speak,
+    sleep,
     scenary,
     BALL,
     DOOR,

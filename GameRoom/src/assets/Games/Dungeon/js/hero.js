@@ -29,6 +29,7 @@
 
 import { scenary, BALL, DOOR, 
     speak,
+    sleep,
     _hero_basic_sound, 
     _hero_defeat_sound, 
     _hero_phrasings,
@@ -49,6 +50,7 @@ class Hero {
     _move_Y;
     _is_alive;
     _can_move;
+    _is_SSJ;
     
 
     /**
@@ -63,6 +65,7 @@ class Hero {
         this.Hero_Can_Move = false;
         this.Hero_move_X = 0;
         this.Hero_move_Y = 5;
+        this.Hero_Is_SSJ = false;
     }
 
     //* ###### Properties: Getters ######
@@ -170,6 +173,14 @@ class Hero {
         return _VILLAIN_MSG_FORMAT;
     }
 
+    /**
+     * Gets true if the hero is tranformed, otherwise false.
+     * @returns {boolean} True if the hero is tranformed.
+     */
+    get Hero_Is_SSJ(){
+        return this._is_SSJ;
+    }
+
     //* ###### Properties: Setters ######
 
     /**
@@ -228,6 +239,14 @@ class Hero {
      */
     set Hero_Alive(value) {
         this._is_alive = value;
+    }
+
+    /**
+     * Sets the status in true if the hero is transformed, otherwise false.
+     * @param {boolean} value - The new status.
+     */
+    set Hero_Is_SSJ(value){
+        this._is_SSJ = value;
     }
 
     //* ###### Draw Methods ######
@@ -347,19 +366,20 @@ class Hero {
      */
      first_game_position = () => {
         this.revive();
-        this.Hero_x = 1;
-        this.Hero_y = 1;
-        setTimeout(() => {
-            setTimeout(() => {
-                setTimeout(() => {
+        let transform = setTimeout(() => {
+            let position = setTimeout(() => {
+                let phrase = setTimeout(() => {
                     this.hero_random_speak('enemy_phrases/', _enemy_init_phrase);
                     console.log('%cFrieza: I regret to inform you that after tearing you to pieces,\nI plan to completely destroy the earth and along with it the namek dragon balls!', this.Villain_MSG_Format);
+                    clearTimeout(transform);
+                    clearTimeout(position);
+                    clearTimeout(phrase);
                 }, 2000);
                 this.Hero_move_Y = 1;
                 this.Hero_move_X = 0;
                 this.Hero_Can_Move = true;
                 this.go_down();
-            }, 2000);
+            }, 3040);
             this.transform_animation();
         }, 6800);
         this.hero_init_phrase(); // init wait 6.9 sec
@@ -367,18 +387,20 @@ class Hero {
         scenary[8][3] = 3;  // The key is in the initial position.
     }
 
+    set_base_idle = () => {
+        this.Hero_move_Y = 5;
+        this.Hero_move_X = 0;
+    }
+
     /**
      * Sets the hero in the initial position.
      */
     set_default_position = () => {
         this.revive();
-        this.Hero_x = 1;
-        this.Hero_y = 1;
-        setTimeout(() => {
-            this.Hero_move_Y = 1;
-            this.Hero_move_X = 0;
+        let position = setTimeout(() => {
             this.Hero_Can_Move = true;
-        }, 3000);
+            clearTimeout(position);
+        }, 3050);
         this.transform_animation();
         this.Hero_KEY = false;   // The player doesn't have the key.
         scenary[8][3] = 3;  // The key is in the initial position.
@@ -391,19 +413,24 @@ class Hero {
     revive = () => {
         if(!this.Hero_Alive){
             this.Hero_Alive = true;
+            this.Hero_Is_SSJ = false;
             this.Hero_Can_Move = false;
         }
+        this.set_base_idle();
+        this.Hero_x = 1;
+        this.Hero_y = 1;    
     }
 
     /**
      * Plays a victory sound and sets the hero in the initial position.
      */
      victory = () => {
-        this.hero_random_speak('enemy_phrases/', _enemy_rage);
-        console.log('%cSuper Vegita: Finally i\'ll be immortal and the universe emperor!!', this.Hero_SMSG_Format);
-        this.Hero_Can_Move = false;
-        setTimeout(() => {
-            setTimeout(() => {
+         this.hero_random_speak('enemy_phrases/', _enemy_rage);
+         console.log('%cSuper Vegita: Finally i\'ll be immortal and the universe emperor!!', this.Hero_SMSG_Format);
+         this.Hero_Can_Move = false;
+         setTimeout(() => {
+             setTimeout(() => {
+                this.Hero_Is_SSJ = false;
                 this.set_default_position();
             }, 5280);
             console.log('%cFrieza: You\'ll pay, damn Saiyan!', this.Villain_MSG_Format);
@@ -436,11 +463,17 @@ class Hero {
     transform_Y = (index_Y) => {
         this.Hero_move_X = 0;
         this.Hero_move_Y = index_Y;
-        setInterval(() => {
-            if(this.Hero_Alive && this.Hero_move_X < 3){
-                this.Hero_move_X ++;
+        //console.log(`Index Y: ${index_Y} | Index X: ${this.Hero_move_X}`);
+        let interval = setInterval(() => {
+            if (this.Hero_Alive && this.Hero_move_X < 3) {
+                this.Hero_move_X++;
             }
-        }, 500);
+            console.log(`Index Y: ${index_Y} | Index X: ${this.Hero_move_X}`);
+            if (this.Hero_move_X == 3) {
+                clearInterval(interval);
+            }
+        }, 250);
+        
     }
 
     /**
@@ -448,18 +481,28 @@ class Hero {
      * for the transformation and prints a message in console.
      */
     transform_animation = () => {
-        setTimeout(() => {
-            setTimeout(() => {
-                this.transform_Y(6);
-                clearInterval(this.transform_Y);
-                this.Hero_move_X = 0;
-                this.Hero_move_Y = 1;
-            } , 2000);
-            console.log("%cSuper Vegita: I\'m Super Vegita!!!", this.Hero_SMSG_Format);
-            this.transform_Y(5);
-        }, 250);
-        this.hero_speak(this.Hero_Basic_Sounds[6]); // scream wait 4 sec
-        clearInterval(this.transform_Y);
+        if(!this.Hero_Is_SSJ){
+            let tran_1 = setTimeout(() => {
+                console.log("%cSuper Vegita: I\'m Super Vegita!!!", this.Hero_SMSG_Format);
+                this.transform_Y(5);
+                let tran_2 = setTimeout(() => {
+                    this.transform_Y(6);
+                    let tran_3 = setTimeout(() => {
+                        this.transform_Y(7);
+                        let tran_4 = setTimeout(() => {
+                            this.Hero_move_X = 0;
+                            this.Hero_move_Y = 1;
+                            this.Hero_Is_SSJ = true;
+                            clearTimeout(tran_1);
+                            clearTimeout(tran_2);
+                            clearTimeout(tran_3);
+                            clearTimeout(tran_4);
+                        }, 1010);
+                    }, 1010);
+                } , 1010);
+            }, 250);
+            this.hero_speak(this.Hero_Basic_Sounds[6]); // scream wait 4 sec
+        }
     }
 
     //* ###### Speech Methods ######
