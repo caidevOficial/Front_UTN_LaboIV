@@ -35,13 +35,17 @@ const height_F = 50;
 const width_H = 50;
 const height_H = 50;
 const WALL = 0;
-const LAND = 2;
 const DOOR = 1;
+const LAND = 2;
 const BALL = 3;
+const UP_DIR = 0;
+const DOWN_DIR = 1;
+const LEFT_DIR = 2;
+const RIGHT_DIR = 3;
 const _hero_defeat_sound = [
     'defeat_01',
     'defeat_02'
-]
+];
 
 const _hero_basic_sound = [
     'dball_found',
@@ -172,6 +176,10 @@ export {
     height_F,
     width_H,
     height_H,
+    UP_DIR,
+    DOWN_DIR,
+    LEFT_DIR,
+    RIGHT_DIR,
     music_play,
     speak,
     sleep,

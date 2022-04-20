@@ -27,7 +27,7 @@
  * @author Facundo Falcone <CaidevOficial> 
  */
 
-import { scenary } from './common_vars.js';
+import { scenary, UP_DIR, DOWN_DIR, LEFT_DIR, RIGHT_DIR } from './common_vars.js';
 
 class Enemy {
 
@@ -50,7 +50,7 @@ class Enemy {
         this.Enemy_y = y;
         this.Enemy_direction = Math.floor(Math.random() * 4);
         this.Enemy_delay = 50;
-        this.Enemy_frame = 0;
+        this.Enemy_frame = 2;
         this.Enemy_counter = 0;
     }
 
@@ -181,17 +181,6 @@ class Enemy {
         this._move_y = y;
     }
 
-    /**
-     * Checks the movement of the sprite.
-     */
-     check_movement = () => {
-        if(this.Enemy_move_X < 3) {
-            this.Enemy_move_X++;
-        }else{
-            this.Enemy_move_X = 0;
-        }
-    }
-
     draw = (ctx, tileMap, width_F, height_F) => {
         ctx.drawImage(tileMap, 
             this.Enemy_move_X * 32,
@@ -216,11 +205,10 @@ class Enemy {
      * Checks the movement of the sprite.
      */
     check_movement = () => {
-       if (this.Enemy_move_X < 1) {
-           this.Enemy_move_X++;
-       } else {
-           this.Enemy_move_X = 0;
-       }
+       (this.Enemy_move_X < 1) ? 
+            this.Enemy_move_X++ : 
+            this.Enemy_move_X = 0;
+        //console.log(`Animation X : ${this.Enemy_move_X}`);
     }
 
     /**
@@ -238,14 +226,14 @@ class Enemy {
             //* ######## UP ########
             if (this.Enemy_direction == 0 && !this.check_collision(this.Enemy_x, this.Enemy_y - 1)) {
                 this.Enemy_y--;
-                this.Enemy_move_Y = 0;
+                this.Enemy_move_Y = UP_DIR;
                 this.check_movement();
             }
 
             //* ######## DOWN ########
             else if (this.Enemy_direction == 1 && !this.check_collision(this.Enemy_x, this.Enemy_y + 1)) {
                 this.Enemy_y++;
-                this.Enemy_move_Y = 1;
+                this.Enemy_move_Y = DOWN_DIR;
                 this.check_movement();
             }
 
@@ -253,10 +241,10 @@ class Enemy {
             else if (this.Enemy_direction == 2 && !this.check_collision(this.Enemy_x - 1, this.Enemy_y)) {
                 if(this.Enemy_x == 2 && this.Enemy_y == 1) {
                     this.Enemy_y++;
-                    this.Enemy_move_Y = 1;
+                    this.Enemy_move_Y = DOWN_DIR;
                 }else{
                     this.Enemy_x--;
-                    this.Enemy_move_Y = 2;
+                    this.Enemy_move_Y = LEFT_DIR;
                 }
                 this.check_movement();
             }
@@ -264,10 +252,10 @@ class Enemy {
             //* ######## RIGHT ########
             else if (this.Enemy_direction == 3 && !this.check_collision(this.Enemy_x + 1, this.Enemy_y)) {
                 this.Enemy_x++;
-                this.Enemy_move_Y = 3;
+                this.Enemy_move_Y = RIGHT_DIR;
                 this.check_movement();
             }else {
-                this.Enemy_direction = Math.floor(Math.random() * 4);
+                this.Enemy_direction = Math.floor(Math.random() * 3);
                 this.check_movement();
             }
         }
