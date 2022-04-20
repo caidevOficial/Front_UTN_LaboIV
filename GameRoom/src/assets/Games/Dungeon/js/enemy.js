@@ -193,7 +193,10 @@ class Enemy {
     }
 
     draw = (ctx, tileMap, width_F, height_F) => {
-        ctx.drawImage(tileMap, 0, 32, 32, 32,
+        ctx.drawImage(tileMap, 
+            this.Enemy_move_X * 32,
+            this.Enemy_move_Y * 32,
+            32, 32,
             this.Enemy_x * width_F, this.Enemy_y * height_F,
             width_F, height_F
         );
@@ -207,6 +210,17 @@ class Enemy {
      */
     check_collision = (x, y) => {
         return scenary[y][x] == 0;
+    }
+
+    /**
+     * Checks the movement of the sprite.
+     */
+    check_movement = () => {
+       if (this.Enemy_move_X < 1) {
+           this.Enemy_move_X++;
+       } else {
+           this.Enemy_move_X = 0;
+       }
     }
 
     /**
@@ -224,27 +238,37 @@ class Enemy {
             //* ######## UP ########
             if (this.Enemy_direction == 0 && !this.check_collision(this.Enemy_x, this.Enemy_y - 1)) {
                 this.Enemy_y--;
+                this.Enemy_move_Y = 0;
+                this.check_movement();
             }
 
             //* ######## DOWN ########
             else if (this.Enemy_direction == 1 && !this.check_collision(this.Enemy_x, this.Enemy_y + 1)) {
                 this.Enemy_y++;
+                this.Enemy_move_Y = 1;
+                this.check_movement();
             }
 
             //* ######## LEFT ########
             else if (this.Enemy_direction == 2 && !this.check_collision(this.Enemy_x - 1, this.Enemy_y)) {
                 if(this.Enemy_x == 2 && this.Enemy_y == 1) {
                     this.Enemy_y++;
+                    this.Enemy_move_Y = 1;
                 }else{
                     this.Enemy_x--;
+                    this.Enemy_move_Y = 2;
                 }
+                this.check_movement();
             }
 
             //* ######## RIGHT ########
             else if (this.Enemy_direction == 3 && !this.check_collision(this.Enemy_x + 1, this.Enemy_y)) {
                 this.Enemy_x++;
+                this.Enemy_move_Y = 3;
+                this.check_movement();
             }else {
                 this.Enemy_direction = Math.floor(Math.random() * 4);
+                this.check_movement();
             }
         }
     }

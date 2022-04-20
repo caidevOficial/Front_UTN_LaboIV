@@ -43,13 +43,13 @@ const KEY_SPEAK = 69;
 
 /**
  * Draws the background of the game
- * @param {HTMLImageElement} tileMap Is the image element of the tilemap [background of the game.] 
+ * @param {HTMLImageElement} canvas_tileMap Is the image element of the canvas_tileMap [background of the game.] 
  */
-const draw_scenary = (tileMap) => {
+const draw_scenary = (canvas_tileMap) => {
   for (var y = 0; y < 10; y++) {
     for (var x = 0; x < 15; x++) {
       const tile = scenary[y][x];
-      ctx.drawImage(tileMap, tile * 32, 0, 32, 32,
+      ctx.drawImage(canvas_tileMap, tile * 32, 0, 32, 32,
         width_F * x, height_F * y,
         width_F, height_F
       );
@@ -67,21 +67,22 @@ const delete_canvas = () => {
 
 /**
  * Draws the background, the hero, the enemies and the torch.
- * @param {HTMLImageElement} hero_tile Is the image element of the hero.
- * @param {HTMLImageElement} tileMap Is the image element of the tilemap [background of the game.]
+ * @param {HTMLImageElement} hero_tileMap Is the image element of the hero.
+ * @param {HTMLImageElement} enemy_tileMap Is the image element of the enemy.
+ * @param {HTMLImageElement} canvas_tileMap Is the image element of the canvas_tileMap [background of the game.]
  * @param {HTMLImageElement} torch_img Is the image element of the torch.
  * @param {Hero} avatar Is the hero object.
  * @param {Enemy} enemy Is the enemy object.
  */
-const principal = (hero_tile, tileMap, torch_img, avatar, enemy) => {
+const principal = (hero_tileMap, enemy_tileMap, canvas_tileMap, torch_img, avatar, enemy) => {
   delete_canvas();
-  draw_scenary(tileMap);
-  torch_img.draw(ctx, tileMap, width_F, height_F);
-  avatar.draw(ctx, hero_tile, width_H, height_H);
+  draw_scenary(canvas_tileMap);
+  torch_img.draw(ctx, canvas_tileMap, width_H, height_H);
+  avatar.draw(ctx, hero_tileMap, width_H, height_H);
 
   enemy.forEach((e) => {
     e.move(avatar);
-    e.draw(ctx, tileMap, width_F, height_F);
+    e.draw(ctx, enemy_tileMap, width_F, height_F);
   });
 }
 
@@ -119,10 +120,12 @@ const dungeon_game_init = () => {
   canvas = document.getElementById('canvas');
   ctx = canvas.getContext('2d');
   
-  var tileMap = new Image();
-  tileMap.src = '../assets/Games/Dungeon/img/tilemap_dbz_namek.png';
+  var canvas_tileMap = new Image();
+  canvas_tileMap.src = '../assets/Games/Dungeon/img/tilemap_dbz_namek.png';
   var hero_tile = new Image();
   hero_tile.src = '../assets/Games/Dungeon/img/tilemap_hero_t.png';
+  var enemy_tile = new Image();
+  enemy_tile.src = '../assets/Games/Dungeon/img/tilemap_enemy.png';
 
   //* Player
   const avatar = new Hero();
@@ -148,7 +151,7 @@ const dungeon_game_init = () => {
   });
 
   setInterval(() => {
-    principal(hero_tile, tileMap, torch_img, avatar, enemy);
+    principal(hero_tile, enemy_tile, canvas_tileMap, torch_img, avatar, enemy);
   }, 1000 / FPS);
 }
 
