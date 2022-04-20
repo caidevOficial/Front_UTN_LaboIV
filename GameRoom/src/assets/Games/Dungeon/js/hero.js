@@ -39,7 +39,9 @@ import { scenary, BALL, DOOR,
     _enemy_defeat_hero_phrasing,
     _HERO_MSG_FORMAT,
     _SUPER_HERO_MSG_FORMAT,
-    _VILLAIN_MSG_FORMAT } from './common_vars.js';
+    _VILLAIN_MSG_FORMAT, 
+    UP_DIR, DOWN_DIR, 
+    LEFT_DIR, RIGHT_DIR  } from './common_vars.js';
 import './howler.core.js'
 
 class Hero {
@@ -261,8 +263,8 @@ class Hero {
      */
     draw = (ctx, tileMap, width_H, height_H) => {
         ctx.drawImage(tileMap,
-            this._move_X * 32,
-            this._move_Y * 32,
+            this.Hero_move_X * 32,
+            this.Hero_move_Y * 32,
             32, 32,
             this.Hero_x * width_H, this.Hero_y * height_H,
             width_H, height_H
@@ -296,11 +298,9 @@ class Hero {
      * Checks the movement of the sprite.
      */
     check_movement = () => {
-        if (this.Hero_Can_Move && this.Hero_move_X < 3) {
-            this.Hero_move_X++;
-        } else {
+        (this.Hero_Can_Move && this.Hero_move_X < 3) ?
+            this.Hero_move_X++ :
             this.Hero_move_X = 0;
-        }
     }
 
     //* ###### Move Methods ######
@@ -312,7 +312,7 @@ class Hero {
         if(this.Hero_Alive && this.Hero_Can_Move){
             if (!this.margins(this.Hero_x, this.Hero_y - 1)) {
                 this.Hero_y--;
-                this.Hero_move_Y = 0;
+                this.Hero_move_Y = UP_DIR;
                 this.check_movement();
                 this.obj_logics();
             }
@@ -326,7 +326,7 @@ class Hero {
         if(this.Hero_Alive && this.Hero_Can_Move){
             if (!this.margins(this.Hero_x, this.Hero_y + 1)) {
                 this.Hero_y++;
-                this.Hero_move_Y = 1;
+                this.Hero_move_Y = DOWN_DIR;
                 this.check_movement();
                 this.obj_logics();
             }
@@ -340,7 +340,7 @@ class Hero {
         if(this.Hero_Alive && this.Hero_Can_Move){
             if (!this.margins(this.Hero_x - 1, this.Hero_y)) {
                 this.Hero_x--;
-                this.Hero_move_Y = 2;
+                this.Hero_move_Y =LEFT_DIR;
                 this.check_movement();
                 this.obj_logics();
             }
@@ -354,7 +354,7 @@ class Hero {
         if(this.Hero_Alive && this.Hero_Can_Move){
             if (!this.margins(this.Hero_x + 1, this.Hero_y)) {
                 this.Hero_x++;
-                this.Hero_move_Y = 3;
+                this.Hero_move_Y = RIGHT_DIR;
                 this.check_movement();
                 this.obj_logics();
             }
