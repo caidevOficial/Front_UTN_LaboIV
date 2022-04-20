@@ -107,7 +107,7 @@ const Hero_Game_Action = (key_pressed, avatar) => {
       break;
     case KEY_SPEAK:
       if(avatar.Hero_Can_Move) {
-       avatar.hero_random_speak();  
+       avatar.hero_random_speak('phrases/', avatar.Hero_Phrases);  
      }
      break;
     }

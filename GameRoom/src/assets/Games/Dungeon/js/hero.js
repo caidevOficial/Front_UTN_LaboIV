@@ -38,14 +38,18 @@ class Hero {
     _move_Y;
     _is_alive;
     _can_move;
+    _hero_defeat_sound = [
+        'defeat_01',
+        'defeat_02'
+    ]
+
     _hero_basic_sound = [
         'dball_found',
-        'defeat',
         'error',
         'victory',
         'enemy_rage',
-        'game_init',
-        'game_init_1',
+        'game_init_01',
+        'game_init_02',
         'scream_transform'
     ];
 
@@ -144,11 +148,18 @@ class Hero {
     }
 
     /**
-     * Gets the basic sound for the hero.
+     * Gets the list for basic sound for the hero.
      * @returns {Array} The basic sound for the hero.
      */
     get Hero_Basic_Sounds() {
         return this._hero_basic_sound;
+    }
+
+    /**
+     * Gets the list for hero defeat sound.
+     */
+    get Hero_Defeat_Sound(){
+        return this._hero_defeat_sound;
     }
 
     /**
@@ -243,6 +254,8 @@ class Hero {
         this._is_alive = value;
     }
 
+    //* ###### Draw Methods ######
+
     /**
      * Draws the hero.
      * @param {CanvasRenderingContext2D} ctx - The canvas context.
@@ -282,6 +295,8 @@ class Hero {
         return scenary[y][x] == 0;
     }
 
+    //* ###### Check Methods ######
+
     /**
      * Checks the movement of the sprite.
      */
@@ -293,8 +308,10 @@ class Hero {
         }
     }
 
+    //* ###### Move Methods ######
+
     /**
-     * If the hero isn't on the margins, the hero moves up.
+     * If the hero is alive & isn't on the margins, the hero moves up.
      */
     go_up = () => {
         if(this.Hero_Alive && this.Hero_Can_Move){
@@ -308,7 +325,7 @@ class Hero {
     }
 
     /**
-     * If the hero isn't on the margins, the hero moves down.
+     * If the hero is alive & isn't on the margins, the hero moves down.
      */
     go_down = () => {
         if(this.Hero_Alive && this.Hero_Can_Move){
@@ -322,7 +339,7 @@ class Hero {
     }
 
     /**
-     * If the hero isn't on the margins, the hero moves left.
+     * If the hero is alive & isn't on the margins, the hero moves left.
      */
     go_left = () => {
         if(this.Hero_Alive && this.Hero_Can_Move){
@@ -336,7 +353,7 @@ class Hero {
     }
 
     /**
-     * If the hero isn't on the margins, the hero moves right.
+     * If the hero is alive & isn't on the margins, the hero moves right.
      */
     go_rigth = () => {
         if(this.Hero_Alive && this.Hero_Can_Move){
@@ -387,6 +404,7 @@ class Hero {
         scenary[8][3] = 3;  // The key is in the initial position.
     }
 
+    //* ###### Actions Methods ######
     /**
      * Sets the hero the status Alive in true and Can_Move in false.
      */
@@ -396,6 +414,40 @@ class Hero {
             this.Hero_Can_Move = false;
         }
     }
+
+    /**
+     * Plays a victory sound and sets the hero in the initial position.
+     */
+     victory = () => {
+        this.hero_speak(this.Hero_Basic_Sounds[2]);
+        console.log('%cSuper Vegita: Finally i\'ll be immortal and the universe emperor!!', this.Hero_SMSG_Format);
+        this.Hero_Can_Move = false;
+        setTimeout(() => {
+            setTimeout(() => {
+                this.set_default_position();
+            }, 5280);
+            console.log('%cFrieza: You\'ll pay, damn Saiyan!', this.Villain_MSG_Format);
+        }, 1000);
+        
+    }
+
+    /**
+     * Plays a death sound and sets the hero in the initial position.
+     */
+    death = () => {
+        if(this.Hero_Alive){
+            this.hero_random_speak('', this.Hero_Defeat_Sound);
+            this.Hero_Alive = false;
+            this.Hero_Can_Move = false;
+            this.Hero_move_Y = 4; // Sprite death
+            console.log('%cVegita: Avenge me, Kakarot!!!', this.Hero_MSG_Format);
+            setTimeout(() => {
+                this.set_default_position();
+            }, 7000);
+        }
+    }
+
+    //* ###### Animation Methods ######
 
     /**
      * Makes a partial animation for the transformation of the hero.
@@ -426,47 +478,35 @@ class Hero {
             console.log("%cSuper Vegita: I\'m Super Vegita!!!", this.Hero_SMSG_Format);
             this.transform_Y(5);
         }, 250);
-        this.hero_speak(this.Hero_Basic_Sounds[7]); // scream wait 4 sec
+        this.hero_speak(this.Hero_Basic_Sounds[6]); // scream wait 4 sec
         clearInterval(this.transform_Y);
     }
 
+    //* ###### Speech Methods ######
+
     /**
-     * Plays a victory sound and sets the hero in the initial position.
+     * Gets randomly the name of the audio file for the hero defeat.
+     * @returns {string} The name of the audio file randomly.
      */
-    victory = () => {
-        this.hero_speak(this.Hero_Basic_Sounds[3]);
-        console.log('%cSuper Vegita: Finally i\'ll be immortal and the universe emperor!!', this.Hero_SMSG_Format);
-        setTimeout(() => {
-            setTimeout(() => {
-                this.set_default_position();
-            }, 5280);
-            console.log('%cFrieza: You\'ll pay, damn Saiyan!', this.Villain_MSG_Format);
-            this.Hero_Can_Move = false;
-        }, 1000);
-        
+     random_defeat_sound = () => {
+        return random_sound_from_list(this.Hero_Defeat_Sound);
     }
 
     /**
-     * Plays a death sound and sets the hero in the initial position.
+     * Selects randomly a sound from the list of sounds for the hero.
+     * @param {list} list List to search randomly a name of the audio file.
+     * @returns {string} The name of the selected audio file.
      */
-    death = () => {
-        if(this.Hero_Alive){
-            this.hero_speak(this.Hero_Basic_Sounds[1]);
-            this.Hero_Alive = false;
-            this.Hero_Can_Move = false;
-            this.Hero_move_Y = 4; // Sprite death
-            console.log('%cVegita: Avenge me, Kakarot!!!', this.Hero_MSG_Format);
-            setTimeout(() => {
-                this.set_default_position();
-            }, 7000);
-        }
+    random_sound_from_list = (list) => {
+        let index = Math.floor(Math.random() * list.length);
+        return list[index];
     }
 
     /**
      * Plays the initial phrase of the hero in the game.
      */
     hero_init_phrase = () => {
-        this.hero_speak(this.Hero_Basic_Sounds[6]);
+        this.hero_speak(this.Hero_Basic_Sounds[5]);
     }
 
     /**
@@ -484,12 +524,15 @@ class Hero {
     }
 
     /**
-     * Plays a random sound of the player.
+     * Plays a random sound of the player from a list of sounds.
+     * @param {list} list List of audio files to be played randomly.
      */
-    hero_random_speak = () => {
-        let index = ~~(Math.random() * this.Hero_Phrases.length);
-        this.hero_speak(`/phrases/${this.Hero_Phrases[index]}`);
+    hero_random_speak = (directory = '', sound_list) => {
+        let phrase = this.random_sound_from_list(sound_list);
+        this.hero_speak(`${directory}${phrase}`);
     }
+
+    //* ###### Key Methods ######
 
     /**
      * Basic game logic for the hero.
@@ -503,7 +546,7 @@ class Hero {
             scenary[this.Hero_y][this.Hero_x] = 2;
             console.log('%cSuper Vegita: Finally i have the 1 Star Dragon Ball!!', this.Hero_SMSG_Format);
             setTimeout( () => {
-                    this.hero_speak(this.Hero_Basic_Sounds[4]);
+                    this.hero_speak(this.Hero_Basic_Sounds[3]);
                     console.log("%cFrieza: Catch Vegita, don't let him escape!!", this.Villain_MSG_Format);
                 }, 2600);
             this.hero_speak(this.Hero_Basic_Sounds[0]); // Catch the Dball
@@ -515,7 +558,7 @@ class Hero {
                 this.victory();
             } else {
                 console.log('%cSuper Vegita: We can\'t leave this place without the Dragon Ball, insect!', this.Hero_SMSG_Format);
-                this.hero_speak(this.Hero_Basic_Sounds[2]);
+                this.hero_speak(this.Hero_Basic_Sounds[1]);
             }
         }
     }
