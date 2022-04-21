@@ -29,7 +29,8 @@
 
 import { Enemy } from './enemy.js';
 import { Torch } from './torch.js';
-import { FPS, height_F, width_F, width_H, height_H, music_play, scenary, _HERO_MSG_FORMAT, _BASIC_MSG_FORMAT } from './common_vars.js';
+import { FPS, height_F, width_F, width_H, height_H, music_play, // music_bucket,
+  scenary, _HERO_MSG_FORMAT, _BASIC_MSG_FORMAT } from './common_vars.js';
 import { Hero } from './hero.js';
 
 var canvas;
@@ -107,7 +108,10 @@ const Hero_Game_Action = (key_pressed, avatar) => {
       break;
     case KEY_SPEAK:
       if(avatar.Hero_Can_Move) {
-       avatar.hero_random_speak('hero_phrases/', avatar.Hero_Phrases);  
+      //  if(!music_bucket.hero_random_sound.playing()) {
+      //   music_bucket.hero_random_sound.play();
+      //  }
+        avatar.hero_random_speak('hero_phrases/', avatar.Hero_Phrases);  
      }
      break;
     }
@@ -137,7 +141,10 @@ const dungeon_game_init = () => {
   enemy.push(new Enemy(10, 8));
   enemy.push(new Enemy(12, 3));
 
+  //music_play();
+  //music_bucket.main_theme.play();
   music_play();
+
   setTimeout( () => {
     avatar.first_game_position();
   }, 1000);

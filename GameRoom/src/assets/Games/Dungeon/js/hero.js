@@ -432,7 +432,7 @@ class Hero {
              setTimeout(() => {
                 this.Hero_Is_SSJ = false;
                 this.set_default_position();
-            }, 5280);
+            }, 6400);
             console.log('%cFrieza: You\'ll pay, damn Saiyan!', this.Villain_MSG_Format);
         }, 1000);
         
@@ -567,7 +567,7 @@ class Hero {
             setTimeout( () => {
                     this.hero_speak(this.Hero_Basic_Sounds[3]);
                     console.log("%cFrieza: Catch Vegita, don't let him escape!!", this.Villain_MSG_Format);
-                }, 2600);
+                }, 3150);
                 this.hero_speak(this.Hero_Basic_Sounds[0]); // Catch the Dball
         }
 
