@@ -27,7 +27,7 @@
  * @author Facundo Falcone <CaidevOficial> 
  */
 
-import './howler.core.js'
+import './howler.core.js';
 
 const FPS = 55;
 const width_F = 50;
@@ -42,6 +42,7 @@ const UP_DIR = 0;
 const DOWN_DIR = 1;
 const LEFT_DIR = 2;
 const RIGHT_DIR = 3;
+//! done
 const _hero_defeat_sound = [
     'defeat_01',
     'defeat_02'
@@ -57,6 +58,7 @@ const _hero_basic_sound = [
     'scream_transform'
 ];
 
+//! done
 const _hero_phrasings = [
     'balloon',
     'defeat_after_frieza',
@@ -76,10 +78,12 @@ const _hero_phrasings = [
     'stop_game'
 ];
 
+//! done
 const _enemy_init_phrase = [
     'init_frieza'
 ];
 
+//! done
 const _enemy_provoke = [
     'provoke_01',
     'provoke_02',
@@ -93,9 +97,11 @@ const _enemy_provoke = [
     'provoke_10',
     'provoke_11',
     'provoke_12',
-    'provoke_13'
+    'provoke_13',
+    'provoke_14'
 ];
 
+//! done
 const _enemy_defeat_hero_phrasing = [
     'provoke_death_01',
     'provoke_death_02',
@@ -109,7 +115,8 @@ const _enemy_rage = [
     'rage_02'
 ];
 
-const music_themes = [
+//! done
+const _music_themes = [
     "battle_theme",
     "vegeta_theme"
 ];
@@ -120,15 +127,77 @@ const _SUPER_HERO_MSG_FORMAT = 'color: black; background-color: yellow; font-siz
 const _VILLAIN_MSG_FORMAT = 'color: #FFF; background-color: purple; font-size: 10px; border: 2px solid white; border-radius: 10px; pading: 5px 10px;';
 
 /**
+ * Selects randomly a sound from the list of sounds for the hero.
+ * @param {list} list List to search randomly a name of the audio file.
+ * @returns {string} The name of the selected audio file.
+ */
+const play_random_sound_from_list = (list) => {
+    let index = Math.floor(Math.random() * list.length);
+    return list[index];
+}
+
+/**
+ * Plays a random sound of the player from a list of sounds.
+ * @param {list} list List of audio files to be played randomly.
+ */
+ const play_random_sound = (directory = '', sound_list) => {
+    let phrase = play_random_sound_from_list(sound_list);
+    let path = `../assets/Games/Dungeon/${directory}${phrase}.ogg`
+    return path;
+}
+//! TODO: add a function to play a random sound from a list of sounds.
+//! Checks the functionality of the random_speak function.
+/*
+const music_bucket = {
+    main_theme: new Howl({
+        src: _music_themes,
+        loop: true,
+        volume: 0.3
+    }),
+    hero_random_sound: new Howl({
+        src: _hero_phrasings,
+        loop: false,
+        volume: 0.6
+    }),
+    hero_death_sound: new Howl({
+        src: _hero_defeat_sound,
+        loop: false,
+        volume: 0.6
+    }),
+    villain_random_sound: new Howl({
+        src: _enemy_provoke,
+        loop: false,
+        volume: 0.6
+    }),
+    villain_initial_sound: new Howl({
+        src: _enemy_init_phrase,
+        loop: false,
+        volume: 0.6
+    }),
+    villain_defeat_hero_sound: new Howl({
+        src: _enemy_defeat_hero_phrasing,
+        loop: false,
+        volume: 0.6
+    }),
+    villain_rage_sound: new Howl({
+        src: _enemy_rage,
+        loop: false,
+        volume: 0.6
+    })
+}
+*/
+
+
+/**
  * Plays a random music theme from the music_themes array.
  */
 const music_play = () => {
-    let index = ~~(Math.random() * music_themes.length);
+    let index = ~~(Math.random() * _music_themes.length);
     const music = new Howl({
-        src: [`../assets/Games/Dungeon/music/${music_themes[index]}.ogg`],
+        src: [`../assets/Games/Dungeon/music/${_music_themes[index]}.ogg`],
         loop: true
     });
-    music.volume(0.5);
+    music.volume(0.3);
     music.play();
 }
 
@@ -180,6 +249,7 @@ export {
     DOWN_DIR,
     LEFT_DIR,
     RIGHT_DIR,
+    // music_bucket,
     music_play,
     speak,
     sleep,

@@ -12,6 +12,7 @@ import { TimeComponent } from './pages/time/time.component';
 // ?# Routes of the application
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  //{path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'about', component: AboutComponent },
