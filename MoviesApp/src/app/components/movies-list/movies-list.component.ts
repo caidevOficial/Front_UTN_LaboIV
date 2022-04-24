@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/Entities/movie';
 
 @Component({
-  selector: 'app-movies',
-  templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.css']
+  selector: 'app-movies-list',
+  templateUrl: './movies-list.component.html',
+  styleUrls: ['./movies-list.component.css']
 })
-export class MoviesComponent implements OnInit {
+export class MoviesListComponent implements OnInit {
   movies: Movie[] = [];
   constructor() { }
 

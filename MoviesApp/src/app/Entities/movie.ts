@@ -1,4 +1,4 @@
-enum M_Type {
+export enum M_Type {
     terror,
     comedy,
     romantic,

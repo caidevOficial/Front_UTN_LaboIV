@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Movie } from 'src/app/Entities/movie';
 
 @Component({
   selector: 'app-movies-table',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MoviesTableComponent implements OnInit {
 
-  constructor() { }
+  movies: Movie[] = [];
+  /**
+   * Receives a list of objects class Movie by parameter
+   */
+  constructor() {
+
+  }
 
   ngOnInit(): void {
   }

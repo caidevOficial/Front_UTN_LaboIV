@@ -1,1 +1,30 @@
-<p>movies-table works!</p>
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">Elements List</h1>
+        <p>Both lists and grids must be used, with the possibility of inserting the view between the two..</p>
+        <a class="btn btn-primary btn-lg" role="button">Change View</a>
+        <section>
+            <div class="movies" *ngFor="let item of movies">
+                <div class="movie">
+                    <div class="movie-image">
+                        <img src="{{item.Movie_Photo}}" alt="{{item.Movie_Name}}">
+                    </div>
+                    <div class="movie-info">
+                        <div class="movie-title">
+                            <h3>Name: {{item.Movie_Name}}</h3>
+                        </div>
+                        <div class="movie-description">
+                            <p>Type: {{item.Movie_Type}}</p>
+                        </div>
+                        <div class="movie-rating">
+                            <p>Year: {{item.Movie_Year}}</p>
+                        </div>
+                        <div class="movie-spectators">
+                            <p>Public: {{item.Amount_Public}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<section>
+    <div class="movies-list" *ngFor="let item of movies">
+        <ul>
+            <li>
+                <div class="movie-image">
+                    <img src="{{item.Movie_Photo}}" alt="{{item.Movie_Name}}">
+                </div>
+            </li>
+            <li>Name: {{item.Movie_Name}} </li>
+            <li>Type: {{item.Movie_Type}} </li>
+            <li>Year: {{item.Movie_Year}} </li>
+            <li>Public: {{item.Amount_Public}} </li>
+        </ul>
+    </div>
+</section>
