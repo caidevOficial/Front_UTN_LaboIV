@@ -35,13 +35,10 @@ export class DungeonComponent implements OnInit {
       'Dungeon/js/howler.core'
     ]);
 
-    
-
     this._load_scripts.load_game_modules(
       'Dungeon/js/common_vars',
       'module', true
     );
-
   }
 
   select_bg = (backs:string[]) => {
@@ -60,7 +57,4 @@ export class DungeonComponent implements OnInit {
     this.select_bg(backGrounds);
     this.load_main_script();
   }
-
-  ngOnDestroy(): void {  }
-
 }

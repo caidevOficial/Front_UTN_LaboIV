@@ -4,11 +4,11 @@
 /* Header */
 header {
     width: 100%;
-    height: 600px;
+    height: 20rem;
     background: linear-gradient(to bottom,
             rgba(22, 13, 1, 0.500),
             rgba(1, 222, 251, 0.5),
-            rgba(255, 255, 255, 0.500)), url(../../../assets/img/background_gameroom.jpg);
+            rgba(255, 255, 255, 0.500)), url(../../../assets/img/bgd_gameroom.jpg);
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
