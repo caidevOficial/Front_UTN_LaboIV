@@ -60,9 +60,22 @@ export class LoginComponent implements OnInit {
 
   fast_access = (): void => {
     this.harcoded = true;
+    let exist = false;
+    let local_users = JSON.parse(localStorage.getItem('users') || '[]');
     this.actual_user.setUsername = 'admin';
     this.actual_user.setPassword = 'admin';
-    sessionStorage.setItem(this.actual_user.getUsername, JSON.stringify(this.actual_user));
+    local_users.forEach((the_user: any)  => {
+      if (the_user.username == this.actual_user.getUsername &&
+        the_user.password == this.actual_user.getPassword) {
+          exist = true;
+      }
+    });
+    if(!exist){
+      local_users.push(this.actual_user);
+      localStorage.setItem('users', JSON.stringify(local_users));
+    }
+    
+    this.login_user();
   }
 
   /**
