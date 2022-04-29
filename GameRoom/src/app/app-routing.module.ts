@@ -11,19 +11,17 @@ import { TimeComponent } from './pages/time/time.component';
 
 // ?# Routes of the application
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, children: [
+    { path: 'games/dungeon', component: DungeonComponent }
+    //, { path: '**', component: NotFoundComponent }
+    //, {path: 'questions', component: QuestionsComponent}
+  ]}
   //{path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)},
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'time', component: TimeComponent },
-  { path: 'games', component: GamesComponent, children: [
-      {path: 'dungeon', component: DungeonComponent},
-      // { path: '**', component: NotFoundComponent }
-      // {path: 'questions', component: QuestionsComponent}
-    ]
-  },
-  { path: '**', component: NotFoundComponent },
+  ,{ path: 'login', component: LoginComponent }
+  ,{ path: 'signup', component: SignupComponent }
+  ,{ path: 'about', component: AboutComponent }
+  ,{ path: 'time', component: TimeComponent }
+  ,{ path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

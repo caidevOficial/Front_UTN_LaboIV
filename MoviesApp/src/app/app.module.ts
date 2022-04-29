@@ -12,6 +12,7 @@ import { ListActorsComponent } from './pages/actors/list-actors/list-actors.comp
 import { ListMoviesComponent } from './pages/movies/list-movies/list-movies.component';
 import { AddMoviesComponent } from './pages/movies/add-movies/add-movies.component';
 import { MoviesTableComponent } from './components/movies-table/movies-table.component';
+import { MoviesListComponent } from './components/movies-list/movies-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MoviesTableComponent } from './components/movies-table/movies-table.com
     ListActorsComponent,
     ListMoviesComponent,
     AddMoviesComponent,
-    MoviesTableComponent
+    MoviesTableComponent,
+    MoviesListComponent
   ],
   imports: [
     BrowserModule,

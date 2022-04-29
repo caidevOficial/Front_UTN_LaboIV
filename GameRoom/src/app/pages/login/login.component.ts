@@ -9,11 +9,12 @@ import { LoadScriptsService } from '../../load-scripts.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  harcoded: boolean;
   actual_user: User;
 
   constructor(public route: Router, private _load_scripts: LoadScriptsService) {
     // valido de tener el token en local storage, luego redirijo a home
+    this.harcoded = false;
     this.actual_user = new User();
     this._load_scripts.load_assets_script([
       'Login/vendor/jquery/jquery-3.2.1.min',
@@ -52,6 +53,12 @@ export class LoginComponent implements OnInit {
     if (this.actual_user.login()) {
       this.redirect_to();
     }
+  }
+
+  fast_access = (): void => {
+    this.harcoded = true;
+    this.actual_user.setUsername = 'admin';
+    this.actual_user.setPassword = 'admin';
   }
 
   /**

@@ -15,15 +15,31 @@
                     Log in
                 </span>
 
-                <div class="wrap-input100 validate-input" data-validate = "Enter username">
-                    <input class="input100" type="text" placeholder="Username" [(ngModel)]="actual_user.setUsername" [ngModelOptions]="{standalone: true}" required>
-                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
-                </div>
+                <div *ngIf="!this.harcoded then normal_login else fast_access_user"></div>
+                
+                <ng-template #normal_login>
+                    <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                        <input class="input100" type="text" placeholder="Username" (ngModel)="actual_user.setUsername" [ngModelOptions]="{standalone: true}" required>
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+    
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <input class="input100" type="password" placeholder="Password" (ngModel)="actual_user.setPassword" [ngModelOptions]="{standalone: true}" required>
+                        <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                    </div>
+                </ng-template>
 
-                <div class="wrap-input100 validate-input" data-validate="Enter password">
-                    <input class="input100" type="password" placeholder="Password" [(ngModel)]="actual_user.setPassword" [ngModelOptions]="{standalone: true}" required>
-                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
-                </div>
+                <ng-template #fast_access_user>
+                    <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                        <input class="input100" type="text" placeholder="Username" [ngModel]="actual_user.getUsername" [ngModelOptions]="{standalone: true}" required>
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+    
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <input class="input100" type="password" placeholder="Password" [ngModel]="actual_user.getPassword" [ngModelOptions]="{standalone: true}" required>
+                        <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                    </div>
+                </ng-template>
 
                 <div class="contact100-form-checkbox">
                     <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" required>
@@ -33,6 +49,9 @@
                 </div>
 
                 <div class="container-login100-form-btn">
+                    <button (click)="fast_access()" class="login100-form-btn">
+                        Fast Access
+                    </button>
                     <button (click)="login_user()" class="login100-form-btn">
                         Login
                     </button>
@@ -43,6 +62,8 @@
                         Forgot Password?
                     </a>
                 </div>
+
+                
             </form>
         </div>
     </div>
