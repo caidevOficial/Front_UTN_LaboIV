@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "sala-de-juegos-aff"
+  },
+  "targets": {
+    "sala-de-juegos-aff": {
+      "hosting": {
+        "GameRoom": [
+          "sala-de-juegos-aff"
+        ]
+      }
+    }
   }
 }

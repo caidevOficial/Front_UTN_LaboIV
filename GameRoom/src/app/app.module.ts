@@ -22,7 +22,15 @@ import { DungeonComponent } from './pages/games/dungeon/dungeon.component';
 import { LoadScriptsService } from './load-scripts.service';
 import { DigitalClockComponent } from './components/digital-clock/digital-clock.component';
 import { TimeComponent } from './pages/time/time.component';
+import { environment } from '../environments/environment';
+//import { provideAuth,getAuth } from '@angular/fire/auth';
 //* End Services
+
+//* Angular Firebase | Firestore
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -46,7 +54,11 @@ import { TimeComponent } from './pages/time/time.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
+    // ,provideFirebaseApp(() => initializeApp(environment.firebase))
+    // ,provideFirestore(() => getFirestore())
   ],
   providers: [
     LoadScriptsService

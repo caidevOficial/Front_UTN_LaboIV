@@ -59,6 +59,7 @@ export class LoginComponent implements OnInit {
     this.harcoded = true;
     this.actual_user.setUsername = 'admin';
     this.actual_user.setPassword = 'admin';
+    sessionStorage.setItem(this.actual_user.getUsername, JSON.stringify(this.actual_user));
   }
 
   /**
@@ -67,5 +68,9 @@ export class LoginComponent implements OnInit {
   redirect_to = (): void => {
     this.route.navigateByUrl('/home');
   }
+
+  goto_signup = (): void => {
+    this.route.navigateByUrl('/signup');
+  } 
 
 }
