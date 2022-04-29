@@ -15,9 +15,7 @@ export class User {
      * Sets the username only if it is not empty
      */
     set setUsername(username: string) {
-        if(username != '') {
-            this.username = username;
-        }
+        this.username = username;
     }
 
     /**
@@ -31,9 +29,7 @@ export class User {
      * Sets the password only if it is not empty
      */
     set setPassword(password: string) {
-        if(password != '') {
-            this.password = password;
-        }
+        this.password = password;
     }
 
     /**
@@ -48,18 +44,26 @@ export class User {
      * @returns True if the user exist in the database, false otherwise
      */
     validate_user = () : boolean => {
+        let found = false;
+        console.log(`Actual User in Login: ${this.username} - ${this.password}`);
         let local_users = JSON.parse(localStorage.getItem('users') || '[]');
+        local_users.forEach((the_user: any)  => {
+            console.log(`User in LS: ${the_user.username} - ${the_user.password}`);
+        });
+        
         if(local_users != null) {
             local_users.forEach((the_user: any)  => {
-                if (the_user && 
-                    the_user.getUsername == this.getUsername && 
-                    the_user.getPassword == this.getPassword) {
-                    return true;
+                if (the_user.username == this.username && 
+                    the_user.password == this.password) {
+                    //console.log('Entra a la validacion');
+                    found = true;
+                    return
                 }
-                return false;
+                //console.log('nada coincide en el foreach');
             });
         }
-        return false;
+        //console.log('No hay usuarios en LS');
+        return found;
     }
 
     /**

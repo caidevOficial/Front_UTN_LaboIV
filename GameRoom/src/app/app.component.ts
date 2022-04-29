@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AngularFirestore}  from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+// import { AngularFirestore}  from '@angular/fire/compat/firestore';
+// import { Observable } from 'rxjs';
 import { LoadScriptsService } from './load-scripts.service';
 
 @Component({
@@ -10,13 +10,13 @@ import { LoadScriptsService } from './load-scripts.service';
 })
 export class AppComponent {
   _title = 'GameRoom';
-  items: Observable<any>;
+  // items: Observable<any>;
   
   /**
    * Main constructor of the AppComponent that imports the firebase services.
    */
-   constructor(firestore: AngularFirestore, private _load_scripts: LoadScriptsService) {
-    this.items = firestore.collection('items').valueChanges();
+   constructor(/*firestore: AngularFirestore, */private _load_scripts: LoadScriptsService) {
+    //this.items = firestore.collection('items').valueChanges();
     
     this._load_scripts.load_url_script([
       'https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js',

@@ -52,6 +52,9 @@ export class LoginComponent implements OnInit {
   login_user = (): void => {
     if (this.actual_user.login()) {
       this.redirect_to();
+    }else{
+      console.log("Error en el login");
+      
     }
   }
 
