@@ -19,12 +19,12 @@
                 
                 <ng-template #normal_login>
                     <div class="wrap-input100 validate-input" data-validate = "Enter username">
-                        <input class="input100" type="text" placeholder="Username" (ngModel)="actual_user.setUsername" [ngModelOptions]="{standalone: true}" required>
+                        <input class="input100" type="text" placeholder="Username" [(ngModel)]="actual_user.setUsername" [ngModelOptions]="{standalone: true}" required>
                         <span class="focus-input100" data-placeholder="&#xf207;"></span>
                     </div>
     
                     <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <input class="input100" type="password" placeholder="Password" (ngModel)="actual_user.setPassword" [ngModelOptions]="{standalone: true}" required>
+                        <input class="input100" type="password" placeholder="Password" [(ngModel)]="actual_user.setPassword" [ngModelOptions]="{standalone: true}" required>
                         <span class="focus-input100" data-placeholder="&#xf191;"></span>
                     </div>
                 </ng-template>
@@ -55,6 +55,9 @@
                     <button (click)="login_user()" class="login100-form-btn">
                         Login
                     </button>
+                    <button (click)="goto_signup()" class="login100-form-btn">
+                        Sign Up
+                    </button>
                 </div>
 
                 <div class="text-center p-t-90">
@@ -62,8 +65,6 @@
                         Forgot Password?
                     </a>
                 </div>
-
-                
             </form>
         </div>
     </div>

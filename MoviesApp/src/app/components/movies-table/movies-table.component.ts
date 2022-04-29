@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from 'src/app/Entities/movie';
 
 @Component({
@@ -8,7 +8,7 @@ import { Movie } from 'src/app/Entities/movie';
 })
 export class MoviesTableComponent implements OnInit {
 
-  movies: Movie[] = [];
+  @Input() movies: Movie[] = [];
   /**
    * Receives a list of objects class Movie by parameter
    */

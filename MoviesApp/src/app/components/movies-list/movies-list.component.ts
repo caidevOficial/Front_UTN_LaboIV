@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from 'src/app/Entities/movie';
 
 @Component({
@@ -7,7 +7,7 @@ import { Movie } from 'src/app/Entities/movie';
   styleUrls: ['./movies-list.component.css']
 })
 export class MoviesListComponent implements OnInit {
-  movies: Movie[] = [];
+  @Input() movies: Movie[] = [];
   constructor() { }
 
   ngOnInit(): void {

@@ -22,7 +22,10 @@ import { DungeonComponent } from './pages/games/dungeon/dungeon.component';
 import { LoadScriptsService } from './load-scripts.service';
 import { DigitalClockComponent } from './components/digital-clock/digital-clock.component';
 import { TimeComponent } from './pages/time/time.component';
+//import { environment } from '../environments/environment';
 //* End Services
+
+//* Angular Firebase | Firestore
 
 @NgModule({
   declarations: [
