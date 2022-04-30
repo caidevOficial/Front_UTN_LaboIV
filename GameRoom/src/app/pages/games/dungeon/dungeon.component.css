@@ -16,10 +16,9 @@
 }
 
 .border-canva {
-    margin: 30px 0px 30px 0px;
+    margin: 30px 30px 30px 30px;
     padding: 10px;
     background: rgb(0, 0, 0);
-    display: inline-block;
 }
 
 #instructions {
@@ -58,8 +57,101 @@
     align-items: center;
 }
 
-#dbz {
-    background-color: #000;
+.banner img {
+    margin: auto;
+}
+
+#canvas {
     width: 100%;
-    justify-self: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.arriba {
+    width: 50px;
+    height: 50px;
+    font-size: 1px;
+    border-style: solid;
+    border-top-color: #fff;
+    border-left-color: #fff;
+    border-right-color: #fff;
+    border-bottom-color: #000;
+    border-top-width: 1px;
+    border-left-width: 25px;
+    border-right-width: 25px;
+    border-bottom-width: 50px;
+    background-color: #000;
+    padding: 0;
+}
+
+.derecha {
+    width: 50px;
+    height: 50px;
+    font-size: 1px;
+    border-style: solid;
+    border-top-color: #fff;
+    border-left-color: #000;
+    border-right-color: #fff;
+    border-bottom-color: #fff;
+    border-top-width: 25px;
+    border-left-width: 50px;
+    border-right-width: 1px;
+    border-bottom-width: 25px;
+    background-color: #000;
+    padding: 0;
+}
+
+.izquierda {
+    width: 50px;
+    height: 50px;
+    font-size: 1px;
+    border-style: solid;
+    border-top-color: #fff;
+    border-left-color: #fff;
+    border-right-color: #000;
+    border-bottom-color: #fff;
+    border-top-width: 25px;
+    border-left-width: 1px;
+    border-right-width: 50px;
+    border-bottom-width: 25px;
+    background-color: #000;
+    padding: 0;
+}
+
+.abajo {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    border-style: solid;
+    border-top-color: #000;
+    border-left-color: #fff;
+    border-right-color: #fff;
+    border-bottom-color: #000;
+    border-top-width: 50px;
+    border-left-width: 25px;
+    border-right-width: 25px;
+    border-bottom-width: 1px;
+    background-color: #000;
+    padding: 0;
+}
+
+.back-color{
+    margin: 30px 0px 30px 0px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.botom {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

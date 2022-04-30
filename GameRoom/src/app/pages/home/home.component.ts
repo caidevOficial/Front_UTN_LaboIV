@@ -8,13 +8,7 @@ import { LoadScriptsService } from '../../load-scripts.service';
 })
 export class HomeComponent implements OnInit {
 
-  // constructor(private _load_scripts: LoadScriptsService) {
-  //   this._load_scripts.load_assets_script(['Games/js/filtro',
-  //     'Games/js/jquery'
-  //   ]);
-  //  }
-
-   constructor() {}
+  constructor() {}
 
   ngOnInit(): void {
   }

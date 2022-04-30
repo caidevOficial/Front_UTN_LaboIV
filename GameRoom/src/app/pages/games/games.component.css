@@ -9,10 +9,17 @@
     --espacios-contenido: 45px;
 }
 
-.galery-work {
+/* .galery-work {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
+} */
+
+.galery-work {
+    display: grid;
+    justify-content: space-evenly;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
 }
 
 .game-container {
@@ -129,11 +136,15 @@ img {
     position: relative;
     transform-style: preserve-3d;
     will-change: transform;
+    /* filter: grayscale(100%); */
+    /* transition: transform filter .5s; */
     transition: transform .5s;
+    
 }
 
 .card:hover {
     transform: translate(10px) rotateX(20deg) rotateY(30deg);
+    /* filter: grayscale(0); */
 }
 
 .card-title {
