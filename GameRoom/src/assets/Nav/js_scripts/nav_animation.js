@@ -42,7 +42,7 @@ const opening = () =>{
 // });
 
 window.addEventListener('click', (e) => {
-    console.log(e.target);
+    //console.log(e.target);
     if(closed==false){
         let span = document.querySelector('span');
         if(e.target !== span && e.target !== open){

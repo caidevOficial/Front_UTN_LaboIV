@@ -89,7 +89,7 @@ const principal = (hero_tileMap, enemy_tileMap, canvas_tileMap, torch_img, avata
 
 /**
  * Make actions bassed on the key pressed.
- * @param {KeyboardEvent} key_pressed Is the key pressed.
+ * @param {any} key_pressed Is the key pressed.
  * @param {Hero} avatar Is the hero object.
  */
 const Hero_Game_Action = (key_pressed, avatar) => {
@@ -118,11 +118,58 @@ const Hero_Game_Action = (key_pressed, avatar) => {
 }
 
 /**
+ * Assigns a keycode to the button, bassed on its id.
+ * then do the hero action.
+ * @param {any} event Is the event of the button.
+ */
+const manual_buttons_event = (event) => {
+  console.log(`inside manual_buttons_event\nevent: ${event}`);
+  let key_pressed;
+  
+  if(event.target.className == 'btn') {
+    switch (event.target.id) {
+      case 'btn_up':
+        key_pressed = { keyCode: KEY_UP };
+        break;
+      case 'btn_down':
+        key_pressed = { keyCode: KEY_DOWN };
+        break;
+      case 'btn_left':
+        key_pressed = { keyCode: KEY_LEFT };
+        break;
+      case 'btn_right':
+        key_pressed = { keyCode: KEY_RIGHT };
+        break;
+      case 'btn_speak':
+        key_pressed = { keyCode: KEY_SPEAK };
+        break;
+    }
+    console.log(`key_pressed: ${key_pressed}`);
+    Hero_Game_Action(key_pressed, avatar);
+  }
+}
+
+/**
+ * Adds a event listener to each button of the array.
+ * @param {array} buttons Is the array of buttons to add the event listener.
+ */
+var add_event_each_button = (buttons) => {
+  console.log(`inside add_event_each_button\nbuttons: ${buttons}`);
+  buttons.forEach((btn) => {
+    btn.addEventListener("clic", manual_buttons_event);
+  });
+}
+
+
+
+/**
  * Initializes the game.
  */
 const dungeon_game_init = () => {
   canvas = document.getElementById('canvas');
   ctx = canvas.getContext('2d');
+  //var buttons = document.querySelectorAll(".btn");
+  
   
   var canvas_tileMap = new Image();
   canvas_tileMap.src = '../assets/Games/Dungeon/img/tilemap_dbz_namek.png';
@@ -141,8 +188,6 @@ const dungeon_game_init = () => {
   enemy.push(new Enemy(10, 8));
   enemy.push(new Enemy(12, 3));
 
-  //music_play();
-  //music_bucket.main_theme.play();
   music_play();
 
   setTimeout( () => {
@@ -157,10 +202,14 @@ const dungeon_game_init = () => {
     Hero_Game_Action(key_pressed, avatar);
   });
 
+  //* Buttons events
+  //add_event_each_button(buttons);
+
   setInterval(() => {
     principal(hero_tile, enemy_tile, canvas_tileMap, torch_img, avatar, enemy);
   }, 1000 / FPS);
 }
+
 
 /**
  * Event listener for Load.
@@ -168,6 +217,7 @@ const dungeon_game_init = () => {
  window.addEventListener("load", () => {
   console.log('%cStart Mision:', _BASIC_MSG_FORMAT);
   console.log('%cVegita: Frieza has 5 dragon balls, now i\'m going to search for the missing one!', _HERO_MSG_FORMAT);
+  document.addEventListener('clic', manual_buttons_event(event));
   dungeon_game_init();
 });
 
