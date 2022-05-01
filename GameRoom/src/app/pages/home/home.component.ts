@@ -8,9 +8,15 @@ import { LoadScriptsService } from '../../load-scripts.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {}
+  constructor() {
+    this.show_header();
+  }
 
   ngOnInit(): void {
   }
 
+  show_header = (): void => {
+    let header = document.getElementsByTagName('header')[0];
+    header.classList.remove('hidden');
+  }
 }

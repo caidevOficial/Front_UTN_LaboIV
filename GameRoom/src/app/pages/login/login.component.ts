@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   actual_user: User;
 
   constructor(public route: Router, private _load_scripts: LoadScriptsService) {
+    
+    this.hide_header();
     // valido de tener el token en local storage, luego redirijo a home
     this.harcoded = false;
     this.actual_user = new User();
@@ -83,6 +85,13 @@ export class LoginComponent implements OnInit {
    */
   goto_signup = (): void => {
     this.route.navigateByUrl('/signup');
-  } 
+  }
+
+  hide_header = (): void => {
+    let header = document.getElementsByTagName('header')[0];
+    console.log(header);
+    
+    header.classList.add('hidden');
+  }
 
 }

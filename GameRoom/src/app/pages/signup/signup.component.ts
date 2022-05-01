@@ -10,6 +10,7 @@ import { User } from 'src/app/Entities/user';
 export class SignupComponent implements OnInit {
   actual_user: User;
   constructor(public route: Router) { 
+    this.hide_header();
     this.actual_user = new User();
   }
 
@@ -36,9 +37,21 @@ export class SignupComponent implements OnInit {
   } 
 
   /**
+   * Redirects to Login.
+   */
+  back_to_login = (): void => {
+    this.redirect_to('login');
+  }
+
+  /**
    * Redirects to the Home page
    */
    redirect_to = (page: string): void => {
     this.route.navigateByUrl(`/${page}`);
+  }
+
+  hide_header = (): void => {
+    let header = document.getElementsByTagName('header')[0];
+    header.classList.add('hidden');
   }
 }
