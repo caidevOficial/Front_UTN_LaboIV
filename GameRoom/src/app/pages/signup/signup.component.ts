@@ -20,19 +20,17 @@ export class SignupComponent implements OnInit {
    * Creates the user account in the localStorage.
    */
   create_account = (): boolean => {
-    if (this.actual_user.getPassword != null &&
-      this.actual_user.getPassword != null) {
-        if(!this.actual_user.login()){
-          if(this.actual_user.create_account()){
+    if (this.actual_user.getPassword.trim() !== '' &&
+      this.actual_user.getPassword.trim() !== '') {
+        let local_users = JSON.parse(localStorage.getItem('users') || '[]');
+        if(this.actual_user.create_account(local_users)){
             alert('Account created successfully')
             this.redirect_to('home');
           } else{
-            alert('Error creating account');
+            alert('Error creating account. User null or already exists');
           }
-        }else{
-          alert("The user already exist");
-          return false;
-        }
+    }else{
+      alert('Error: Please fill the fields before creating account');
     }
     return true;
   } 

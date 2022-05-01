@@ -53,27 +53,20 @@ export class LoginComponent implements OnInit {
     if (this.actual_user.login()) {
       this.redirect_to();
     }else{
-      console.log("Error en el login");
-      
+      console.log("Wrong credentials or user not found");
     }
   }
 
+  /**
+   * If not exist a user with the actual credentials, 
+   * it creates a new one, Then login and redirect to home
+   */
   fast_access = (): void => {
     this.harcoded = true;
-    let exist = false;
     let local_users = JSON.parse(localStorage.getItem('users') || '[]');
     this.actual_user.setUsername = 'admin';
     this.actual_user.setPassword = 'admin';
-    local_users.forEach((the_user: any)  => {
-      if (the_user.username == this.actual_user.getUsername &&
-        the_user.password == this.actual_user.getPassword) {
-          exist = true;
-      }
-    });
-    if(!exist){
-      local_users.push(this.actual_user);
-      localStorage.setItem('users', JSON.stringify(local_users));
-    }
+    this.actual_user.create_account(local_users);
     
     this.login_user();
   }
@@ -85,6 +78,9 @@ export class LoginComponent implements OnInit {
     this.route.navigateByUrl('/home');
   }
 
+  /**
+   * Redirects to the page passed as parameter
+   */
   goto_signup = (): void => {
     this.route.navigateByUrl('/signup');
   } 
