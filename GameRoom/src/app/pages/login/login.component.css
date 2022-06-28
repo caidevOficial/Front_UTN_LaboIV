@@ -1,3 +1,9 @@
 @import "../../app.component.css";
 @import "../../../assets/Login/css/main.css";
 @import "../../../assets/Login/css/util.css";
+
+.invalid {
+    color: orangered;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: medium;
+}

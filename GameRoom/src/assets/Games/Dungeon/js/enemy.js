@@ -27,7 +27,8 @@
  * @author Facundo Falcone <CaidevOficial> 
  */
 
-import { scenary, UP_DIR, DOWN_DIR, LEFT_DIR, RIGHT_DIR } from './common_vars.js';
+import { scenary, UP_DIR, DOWN_DIR, LEFT_DIR, RIGHT_DIR,
+    _enemy_provoke, speak } from './common_vars.js';
 
 class Enemy {
 
@@ -55,8 +56,18 @@ class Enemy {
     }
 
     //* ######### Getters #########
+
+    /**
+     * This function returns the value of the variable _enemy_provoke.
+     * @returns The array of sounds.
+     */
+    get Enemy_Provoke_Sounds() {
+        return _enemy_provoke;
+    }
+
     /**
      * Gets the enemy X position.
+     * @returns {number} The enemy X position.
      */
     get Enemy_x() {
         return this._x;
@@ -64,6 +75,7 @@ class Enemy {
 
     /**
      * Gets the enemy Y position.
+     * @returns {number} The enemy Y position.
      */
     get Enemy_y() {
         return this._y;
@@ -71,6 +83,7 @@ class Enemy {
 
     /**
      * Gets the enemy movement direction.
+     * @returns {number} The enemy movement direction.
      */
     get Enemy_direction() {
         return this._direction;
@@ -78,6 +91,7 @@ class Enemy {
 
     /**
      * Gets the enemy delay
+     * @returns {number} The enemy delay.
      */
     get Enemy_delay() {
         return this._delay;
@@ -85,6 +99,7 @@ class Enemy {
 
     /**
      * Gets the enemy frames.
+     * @returns {number} The enemy frames.
      */
     get Enemy_frame() {
         return this._frame;
@@ -92,6 +107,7 @@ class Enemy {
 
     /**
      * Gets the enemy counter.
+     * @returns {number} The enemy counter.
      */
     get Enemy_counter() {
         return this._counter;
@@ -99,7 +115,6 @@ class Enemy {
 
     /**
      * Gets the enemy X position for the sprite.
-     * 
      * @returns {number} The X position for the sprite.
      */
     get Enemy_move_X() {
@@ -108,7 +123,6 @@ class Enemy {
 
     /**
      * Gets the enemy Y position for the sprite.
-     * 
      * @returns {number} The Y position for the sprite.
      */
     get Enemy_move_Y() {
@@ -189,6 +203,43 @@ class Enemy {
             this.Enemy_x * width_F, this.Enemy_y * height_F,
             width_F, height_F
         );
+    }
+
+    //* ###### Speech Methods ######
+
+    /**
+     * Gets randomly the name of the audio file for the enemy defeat.
+     * @returns {string} The name of the audio file randomly.
+     */
+     random_defeat_sound = () => {
+        return random_sound_from_list(this.Enemy_Provoke_Sounds);
+    }
+
+    /**
+     * Selects randomly a sound from the list of sounds for the enemy.
+     * @param {list} list List to search randomly a name of the audio file.
+     * @returns {string} The name of the selected audio file.
+     */
+    random_sound_from_list = (list) => {
+        let index = Math.floor(Math.random() * list.length);
+        return list[index];
+    }
+
+    /**
+     * Plays a random sound of the player from a list of sounds.
+     * @param {list} list List of audio files to be played randomly.
+     */
+    enemy_random_speak = (directory = '', sound_list) => {
+        let phrase = this.random_sound_from_list(sound_list);
+        this.enemy_speak(`${directory}${phrase}`);
+    }
+
+    /**
+     * Plays a specific sound of the player.
+     * @param {string} phrase The name of the audio to be played.
+     */
+    enemy_speak = (phrase) => {
+        speak(`${phrase}`);
     }
 
     /**

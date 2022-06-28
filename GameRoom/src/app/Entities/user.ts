@@ -1,14 +1,18 @@
+import { throwIfEmpty } from "rxjs";
+import { IUser } from "../interfaces/iuser";
+
 /**
  * Class user for Login.
  */
-export class User {
-
+export class User implements IUser {
+    
+    $key: string;
     username: string;
     password: string;
-
     constructor() { 
         this.username = '';
         this.password = '';
+        this.$key = '';
     }
 
     /**
@@ -69,12 +73,10 @@ export class User {
      * @returns True in case that is a valid user, false otherwise
      */
     login = (): boolean =>{
-        let the_user = 'nobody'
         let message :string;
         let local_users = JSON.parse(localStorage.getItem('users') || '[]');
         if(this.validate_user(local_users)){
-            the_user = `[${this.getUsername} | ${this.getPassword}]`;
-            message = `Hi ${the_user}! we will redirect to Home`;
+            message = `Hi [${this.getUsername}]! we will redirect to Home`;
             alert(`${message}`);
             return true;
         }

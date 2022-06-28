@@ -11,7 +11,7 @@ import { TimeComponent } from './pages/time/time.component';
 
 // ?# Routes of the application
 const routes: Routes = [
-  { path: '', component: LoginComponent}
+   { path: '', component: LoginComponent}
   ,{ path: 'home', component: HomeComponent, children: [
     { path: 'games/dungeon', component: DungeonComponent }
   ]}

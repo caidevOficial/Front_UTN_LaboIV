@@ -187,7 +187,6 @@ class Hero {
 
     /**
      * Sets the hero X position.
-     * 
      * @param {number} value - The new X position.
      */
     set Hero_x(value) {
@@ -196,7 +195,6 @@ class Hero {
 
     /**
      * Sets the hero Y position.
-     * 
      * @param {number} value - The new Y position.
      */
     set Hero_y(value) {
@@ -272,7 +270,8 @@ class Hero {
     }
 
     /**
-     * If the hero is on the same position as the enemy, the hero dies.
+     * If the hero is on the same position as the enemy, it calls the death
+     * function.
      * @param {number} x - The X position.
      * @param {number} y - The Y position.
      */
@@ -473,7 +472,6 @@ class Hero {
                 clearInterval(interval);
             }
         }, 250);
-        
     }
 
     /**
@@ -557,7 +555,7 @@ class Hero {
      * Basic game logic for the hero.
      */
     obj_logics = () => {
-        var game_object = scenary[this.Hero_y][this.Hero_x];
+        let game_object = scenary[this.Hero_y][this.Hero_x];
 
         //? With the Dragon Ball
         if (game_object == BALL) {

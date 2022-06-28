@@ -14,7 +14,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NavVarComponent } from './components/nav-var/nav-var.component';
 import { GitRibbonComponent } from './components/git-ribbon/git-ribbon.component';
 import { NavLinksComponent } from './components/nav-links/nav-links.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { IconComponent } from './components/icon/icon.component';
 import { DungeonComponent } from './pages/games/dungeon/dungeon.component';
 
@@ -22,10 +22,18 @@ import { DungeonComponent } from './pages/games/dungeon/dungeon.component';
 import { LoadScriptsService } from './load-scripts.service';
 import { DigitalClockComponent } from './components/digital-clock/digital-clock.component';
 import { TimeComponent } from './pages/time/time.component';
-//import { environment } from '../environments/environment';
+import { environment } from '../environments/environment';
 //* End Services
 
 //* Angular Firebase | Firestore
+//import { initializeApp } from '@angular/fire';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { UserInfoComponent } from './components/user-info/user-info.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { UserCrudService } from './services/user-crud.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -44,15 +52,23 @@ import { TimeComponent } from './pages/time/time.component';
     IconComponent,
     DungeonComponent,
     DigitalClockComponent,
-    TimeComponent
+    TimeComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    //AngularFireModule.initializeApp(environment.firebase),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    HttpClientModule // each servive should import this module
   ],
   providers: [
-    LoadScriptsService
+    LoadScriptsService,
+    UserCrudService
   ],
   bootstrap: [AppComponent]
 })

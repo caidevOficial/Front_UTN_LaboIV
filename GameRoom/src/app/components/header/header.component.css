@@ -20,6 +20,41 @@ nav {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5)
 }
 
+.contenedor-nav {
+    display: flex;
+    margin: auto;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1800px;
+    height: inherit;
+    overflow: hidden;
+}
+
+.right-elements {
+    display: inline;
+    justify-content: center !important;
+    align-items: center;
+}
+
+.logo,
+.logo img {
+    height: 140px;
+}
+
+.nav1 {
+    /* background: transparent; */
+    background: #000;
+    height: 100px;
+    color: #fff;
+}
+
+.nav2 {
+    background: rgb(65, 0, 170);
+    height: 100px;
+    color: #f2f2f2;
+}
+
 #sticky-nav {
     overflow: hidden;
     background-color: #000;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../Entities/user';
 import { LoadScriptsService } from '../../load-scripts.service';
@@ -9,11 +10,18 @@ import { LoadScriptsService } from '../../load-scripts.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  harcoded: boolean;
-  actual_user: User;
+  harcoded: boolean = false;
+  actual_user: User = new User();
+  public loginForm: FormGroup | any;
+  constructor(private fb: FormBuilder, public route: Router, 
+    private _load_scripts: LoadScriptsService) {
+      // this.loginForm = this.fb.group({
+      //   nombre: '',
+      //   password: ''
+      // });
+    }
 
-  constructor(public route: Router, private _load_scripts: LoadScriptsService) {
-    
+  ngOnInit(): void {
     this.hide_header();
     // valido de tener el token en local storage, luego redirijo a home
     this.harcoded = false;
@@ -43,9 +51,30 @@ export class LoginComponent implements OnInit {
       "./assets/Login/css/util.css",
       "./assets/Login/css/main.css",
     ]);
+
+    this.loginForm = this.fb.group({
+      'username': ['', [Validators.required, this.spacesValidator]],
+      'password': ['', Validators.required]
+    });
+
+    this.actual_user.setUsername = this.loginForm.controls['username'].value;
+    this.actual_user.setPassword = this.loginForm.controls['password'].value;
   }
 
-  ngOnInit(): void {
+  // CUSTOM VALIDATOR
+  /**
+   * If the value of the control contains spaces, return an object with a property called
+   * containsSpaces. Otherwise, return null.
+   * @param {AbstractControl} control - AbstractControl - The control to validate.
+   * @returns an object with a property called containsSpaces.
+   */
+  private spacesValidator(control: AbstractControl): null | object {
+    const nombre = <string>control.value;
+    const spaces = nombre.includes(' ');
+
+    return spaces
+      ? { containsSpaces: true }
+      : null; 
   }
 
   /**
@@ -66,8 +95,8 @@ export class LoginComponent implements OnInit {
   fast_access = (): void => {
     this.harcoded = true;
     let local_users = JSON.parse(localStorage.getItem('users') || '[]');
-    this.actual_user.setUsername = 'admin';
-    this.actual_user.setPassword = 'admin';
+    this.actual_user.setUsername = 'Guest';
+    this.actual_user.setPassword = 'Guest';
     this.actual_user.create_account(local_users);
     
     this.login_user();

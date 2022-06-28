@@ -35,11 +35,14 @@ import { Hero } from './hero.js';
 
 var canvas;
 var ctx;
-const KEY_UP = 87;
-const KEY_DOWN = 83;
-const KEY_LEFT = 65;
-const KEY_RIGHT = 68;
-const KEY_SPEAK = 69;
+const KEY_UP = 87;       // w
+const KEY_DOWN = 83;     // s
+const KEY_LEFT = 65;     // a
+const KEY_RIGHT = 68;    // d
+const KEY_SPEAK = 69;    // e
+const ENEMY_SPEAK = 81;  // q
+const buttons = document.querySelectorAll(".btn");
+var avatar = new Hero();
 
 
 /**
@@ -80,7 +83,9 @@ const principal = (hero_tileMap, enemy_tileMap, canvas_tileMap, torch_img, avata
   draw_scenary(canvas_tileMap);
   torch_img.draw(ctx, canvas_tileMap, width_H, height_H);
   avatar.draw(ctx, hero_tileMap, width_H, height_H);
-
+  // setTimeout(() => {
+  //   enemy[0].enemy_random_speak('enemy_phrases/', enemy[0].Enemy_Provoke_Sounds);
+  // }, 15000);
   enemy.forEach((e) => {
     e.move(avatar);
     e.draw(ctx, enemy_tileMap, width_F, height_F);
@@ -91,8 +96,9 @@ const principal = (hero_tileMap, enemy_tileMap, canvas_tileMap, torch_img, avata
  * Make actions bassed on the key pressed.
  * @param {any} key_pressed Is the key pressed.
  * @param {Hero} avatar Is the hero object.
+ * @param {Enemy} enemy Is the enemy object.
  */
-const Hero_Game_Action = (key_pressed, avatar) => {
+const Hero_Game_Action = (key_pressed, avatar, enemy) => {
   switch (key_pressed.keyCode) {
     case KEY_UP:
       avatar.go_up();
@@ -114,6 +120,9 @@ const Hero_Game_Action = (key_pressed, avatar) => {
         avatar.hero_random_speak('hero_phrases/', avatar.Hero_Phrases);  
      }
      break;
+     case ENEMY_SPEAK:
+       enemy.enemy_random_speak('enemy_phrases/', enemy.Enemy_Provoke_Sounds);
+        break;
     }
 }
 
@@ -121,9 +130,9 @@ const Hero_Game_Action = (key_pressed, avatar) => {
  * Assigns a keycode to the button, bassed on its id.
  * then do the hero action.
  * @param {any} event Is the event of the button.
+ * @param {Hero} avatar Is the hero object.
  */
-const manual_buttons_event = (event) => {
-  console.log(`inside manual_buttons_event\nevent: ${event}`);
+const manual_buttons_event = (event, avatar, enemy) => {
   let key_pressed;
   
   if(event.target.className == 'btn') {
@@ -140,27 +149,17 @@ const manual_buttons_event = (event) => {
       case 'btn_right':
         key_pressed = { keyCode: KEY_RIGHT };
         break;
-      case 'btn_speak':
+      case 'btn_e':
         key_pressed = { keyCode: KEY_SPEAK };
         break;
+      case 'btn_q':
+        key_pressed = { keyCode: ENEMY_SPEAK };
+        break;
     }
-    console.log(`key_pressed: ${key_pressed}`);
-    Hero_Game_Action(key_pressed, avatar);
+    console.log(`key_pressed: ${key_pressed.keyCode}`);
+    Hero_Game_Action(key_pressed, avatar, enemy[0]);
   }
 }
-
-/**
- * Adds a event listener to each button of the array.
- * @param {array} buttons Is the array of buttons to add the event listener.
- */
-var add_event_each_button = (buttons) => {
-  console.log(`inside add_event_each_button\nbuttons: ${buttons}`);
-  buttons.forEach((btn) => {
-    btn.addEventListener("clic", manual_buttons_event);
-  });
-}
-
-
 
 /**
  * Initializes the game.
@@ -168,18 +167,6 @@ var add_event_each_button = (buttons) => {
 const dungeon_game_init = () => {
   canvas = document.getElementById('canvas');
   ctx = canvas.getContext('2d');
-  //var buttons = document.querySelectorAll(".btn");
-  
-  
-  var canvas_tileMap = new Image();
-  canvas_tileMap.src = '../assets/Games/Dungeon/img/tilemap_dbz_namek.png';
-  var hero_tile = new Image();
-  hero_tile.src = '../assets/Games/Dungeon/img/tilemap_hero_t.png';
-  var enemy_tile = new Image();
-  enemy_tile.src = '../assets/Games/Dungeon/img/tilemap_enemy.png';
-
-  //* Player
-  const avatar = new Hero();
   //* Enemy
   const enemy = [];
   //* Create 4 enemies
@@ -187,8 +174,13 @@ const dungeon_game_init = () => {
   enemy.push(new Enemy(7, 6));
   enemy.push(new Enemy(10, 8));
   enemy.push(new Enemy(12, 3));
-
   music_play();
+  var canvas_tileMap = new Image();
+  canvas_tileMap.src = '../assets/Games/Dungeon/img/tilemap_dbz_namek.png';
+  var hero_tile = new Image();
+  hero_tile.src = '../assets/Games/Dungeon/img/tilemap_hero_t.png';
+  var enemy_tile = new Image();
+  enemy_tile.src = '../assets/Games/Dungeon/img/tilemap_enemy.png';
 
   setTimeout( () => {
     avatar.first_game_position();
@@ -199,12 +191,11 @@ const dungeon_game_init = () => {
 
   //* Keyboard events
   document.addEventListener('keydown', (key_pressed) => {
-    Hero_Game_Action(key_pressed, avatar);
+    Hero_Game_Action(key_pressed, avatar, enemy[0]);
   });
-
+  buttons.forEach((element)=> element.addEventListener("click",manual_buttons_event));
   //* Buttons events
-  //add_event_each_button(buttons);
-
+  
   setInterval(() => {
     principal(hero_tile, enemy_tile, canvas_tileMap, torch_img, avatar, enemy);
   }, 1000 / FPS);
@@ -217,7 +208,7 @@ const dungeon_game_init = () => {
  window.addEventListener("load", () => {
   console.log('%cStart Mision:', _BASIC_MSG_FORMAT);
   console.log('%cVegita: Frieza has 5 dragon balls, now i\'m going to search for the missing one!', _HERO_MSG_FORMAT);
-  document.addEventListener('clic', manual_buttons_event(event));
+  //document.addEventListener('clic', add_event_each_button);
   dungeon_game_init();
 });
 

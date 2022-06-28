@@ -1,4 +1,9 @@
 <div id="img-container">
+    <div class="dbz-video">
+        <video autoplay preload muted loop src="../../../../assets/Games/Dungeon/video/DBSB.mp4">
+        </video>
+        <h1>DBZ DUNGEON</h1>
+    </div>
     <div class="banner">
         <img src="../../../../assets/Games/Dungeon/banner/dbz_logo.png" alt="DBZ Logo">
     </div>
@@ -11,13 +16,16 @@
                 <li>W: To move up.</li>
                 <li>S: To move down.</li>
                 <li>E: To Hero Speak.</li>
+                <li>Q: To Enemy Speak.</li>
             </ul>
         </div>
     
         <canvas id='canvas' class="border-canva"></canvas>
         <div id='game_controls' class="buttons back-color">
             <div class="top">
+                <input id="btn_q" type="button" class="btn btn-danger" value="Frieza Taunt"/>
                 <input id="btn_up" type="button" class="btn" value=""/>
+                <input id="btn_e" type="button" class="btn btn-success" value="Vegita Taunt"/>
             </div>
             <div class="botom">
                 <input id="btn_left" type="button" class="btn" value=""/>
